@@ -1,20 +1,65 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import LocationScreen from './screens/LocationScreen'; 
+import RegistrationScreen from './screens/RegisterScreen';
+import UserTypeSelectionScreen from './screens/UserTypeSelectionScreen';
+import LoginScreen from './screens/LoginScreen';
+import CustomersDashboardScreen from './screens/CustomerDashboardScreen';
+import FarmerDashboardScreen from './screens/FarmerDashboardScreen';
+import ResetPasswordScreen from './screens/ResetPasswordScreen';
+import AdminDashboardScreen from './screens/AdminDashboaerdScreen';
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Location">
+        <Stack.Screen
+          name="Location"
+          component={LocationScreen}
+          options={{ title: 'Location', headerShown: false }}
+        />
+      <Stack.Screen
+          name="Register"
+          component={RegistrationScreen}
+          options={{ title: 'Register', headerShown: false }}
+        />
+        <Stack.Screen
+          name="UserType"
+          component={UserTypeSelectionScreen}
+          options={{ title: 'User Type Selection', headerShown: false }}
+        />
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ title: 'Login', headerShown: false }}
+        />
+        <Stack.Screen
+          name="CustomerDashboard"
+          component={CustomersDashboardScreen}
+          options={{ title: 'Dashboard', headerShown: false }}
+        />
+        <Stack.Screen
+          name="FarmerDashboard"
+          component={FarmerDashboardScreen}
+          options={{ title: 'Dashboard', headerShown: false }}
+        />
+        <Stack.Screen
+          name="ResetPassword"
+          component={ResetPasswordScreen}
+          options={{ title: 'Password', headerShown: false }}
+        />
+         <Stack.Screen
+          name="AdminDashboard"
+          component={AdminDashboardScreen}
+          options={{ title: 'Dashboard', headerShown: false }}
+        />
+     
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "orchard2",
-    "slug": "orchard2",
+    "name": "orchard",
+    "slug": "orchard",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.vigege.orchard2"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4ba1d60c-5f72-4c78-a7e2-0d19d227fb78"
+      }
     }
   }
 }
