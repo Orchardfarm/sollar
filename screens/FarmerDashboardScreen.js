@@ -9,7 +9,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { DrawerItemList, createDrawerNavigator } from "@react-navigation/drawer";
-import User from "./../assets/user.jpg";
+import User from "./../assets/person.png";
 import UserCrops from "./farmer/UserCrops";
 import Contact from "./Contact";
 import Home from "./farmer/Home";
@@ -110,7 +110,9 @@ export default function FarmerDashboardScreen({ navigation }) {
     }
   };
 
-  
+  const handleSearch = () => {
+    
+  };
   
 
   return (
@@ -130,7 +132,7 @@ export default function FarmerDashboardScreen({ navigation }) {
               }}
             >{user && user.data ? (
               <Image
-                source={{ uri: user.data.avatar_url }}
+                source={User}
                 style={{
                   height: 130,
                   width: 130,
@@ -169,21 +171,17 @@ export default function FarmerDashboardScreen({ navigation }) {
             </View>
 
             <DrawerItemList {...props} />
-            <Button name="logout" size={20} color="#2E8B57" onPress={onLogout}>
-            
-             <Text>Logout</Text> 
-            </Button>
 
           </SafeAreaView>
           );
         }}
         screenOptions={{
           drawerStyle: {
-            backgroundColor: "#fff",
+            backgroundColor: "#ffffff",
             width: 250
           },
           headerStyle: {
-            backgroundColor: "#2E8B57",
+            backgroundColor: "#528508",
           },
           headerTintColor: "#fff",
           headerTitleStyle: {
@@ -200,8 +198,18 @@ export default function FarmerDashboardScreen({ navigation }) {
             drawerLabel: "Home",
             title: "Home",
             drawerIcon: () => (
-              <SimpleLineIcons name="home" size={20} color="#2E8B57" />
-            )
+              <SimpleLineIcons name="home" size={20} color="#528508" />
+            ), 
+            headerRight: () => (
+              <TouchableOpacity
+                style={{
+                  marginRight: 16,
+                }}
+                onPress={onLogout}
+              >
+                <FontAwesome name="arrow-right" size={24} color="#fff" />
+              </TouchableOpacity>
+            ),
           }}
           component={Home}
         />
@@ -209,21 +217,35 @@ export default function FarmerDashboardScreen({ navigation }) {
           name="Crops"
           options={{
             drawerLabel: "Crops",
+            color: "#ffffff",
             title: "Crops",
             drawerIcon: () => (
-              <MaterialIcons name="local-florist" size={20} color="#2E8B57" />
-            )
+              <MaterialIcons
+                name="local-florist"
+                size={20}
+                color="#528508"
+              />
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                style={{
+                  marginRight: 16,
+                }}
+                onPress={handleSearch}
+              >
+                <FontAwesome name="search" size={24} color="#fff" />
+              </TouchableOpacity>
+            ),
           }}
           component={CropsScreen}
         />
-
         <Drawer.Screen
           name="Rate this App"
           options={{
             drawerLabel: "Rate this App",
             title: "Rate this App",
             drawerIcon: () => (
-              <FontAwesome name="star" size={20} color="#2E8B57" />
+              <FontAwesome name="star" size={20} color="#528508" />
             )
           }}
           component={RateApp}
@@ -235,7 +257,7 @@ export default function FarmerDashboardScreen({ navigation }) {
             drawerLabel: "Contact",
             title: "Contact",
             drawerIcon: () => (
-              <MaterialCommunityIcons name="message-alert-outline" size={20} color="#2E8B57" />
+              <MaterialCommunityIcons name="message-alert-outline" size={20} color="#528508" />
             )
           }}
           component={Contact}
@@ -246,7 +268,7 @@ export default function FarmerDashboardScreen({ navigation }) {
             drawerLabel: "Share App",
             title: "Share App",
             drawerIcon: () => (
-              <MaterialCommunityIcons name="share" size={20} color="#2E8B57" />
+              <MaterialCommunityIcons name="share" size={20} color="#528508" />
             ),
           }}
           component={ShareAppScreen}
@@ -258,7 +280,7 @@ export default function FarmerDashboardScreen({ navigation }) {
             drawerLabel: "Logout",
             title: "Logout",
             drawerIcon: () => (
-              <MaterialCommunityIcons name="logout" size={20} color="#2E8B57" />
+              <MaterialCommunityIcons name="logout" size={20} color="#528508" />
             ),
           }}
           component={() => {

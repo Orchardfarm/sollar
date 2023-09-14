@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import "react-native-gesture-handler";
-import { View, Text, Image, Linking } from "react-native";
+import { View, Text, Image, Linking, TouchableOpacity } from "react-native";
 import {
   SimpleLineIcons,
   MaterialIcons,
@@ -11,7 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { DrawerItemList, createDrawerNavigator } from "@react-navigation/drawer";
-import User from "./../assets/user.jpg";
+import User from "./../assets/person.png";
 import Contact from "./Contact";
 import Home from "./Home";
 import RateApp from "./RateApp";
@@ -112,6 +112,9 @@ export default function AdminDashboardScreen({ navigation }) {
       console.error('Error sharing app:', error);
     }
   };
+  const handleSearch = (event) => {
+  };
+  
 
 
   return (
@@ -131,7 +134,7 @@ export default function AdminDashboardScreen({ navigation }) {
               }}
             >{user && user.data ? (
               <Image
-                source={{ uri: user.data.avatar_url }}
+                source={User}
                 style={{
                   height: 130,
                   width: 130,
@@ -176,7 +179,7 @@ export default function AdminDashboardScreen({ navigation }) {
                 drawerLabel: "Logout",
                 title: "Logout",
                 drawerIcon: () => (
-                  <MaterialCommunityIcons name="logout" size={20} color="#2E8B57" />
+                  <MaterialCommunityIcons name="logout" size={20} color="#528508" />
                 ),
               }}
               component={() => {
@@ -184,10 +187,6 @@ export default function AdminDashboardScreen({ navigation }) {
                 return null;
               }}
             />
-            <Button name="logout" size={20} color="#2E8B57" onPress={onLogout}>
-            
-             <Text>Logout</Text> 
-            </Button>
 
           </SafeAreaView>
         )}
@@ -198,7 +197,7 @@ export default function AdminDashboardScreen({ navigation }) {
             width: 250
           },
           headerStyle: {
-            backgroundColor: "#2E8B57",
+            backgroundColor: "#528508",
           },
           headerTintColor: "#fff",
           headerTitleStyle: {
@@ -215,8 +214,18 @@ export default function AdminDashboardScreen({ navigation }) {
             drawerLabel: "Home",
             title: "Home",
             drawerIcon: () => (
-              <SimpleLineIcons name="home" size={20} color="#2E8B57" />
-            )
+              <SimpleLineIcons name="home" size={20} color="#528508" />
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                style={{
+                  marginRight: 16,
+                }}
+                onPress={onLogout}
+              >
+                <FontAwesome name="arrow-right" size={24} color="#fff" />
+              </TouchableOpacity>
+            ),
           }}
           component={Home}
         />
@@ -226,30 +235,60 @@ export default function AdminDashboardScreen({ navigation }) {
             drawerLabel: "Crops",
             title: "Crops",
             drawerIcon: () => (
-              <MaterialIcons name="local-florist" size={20} color="#2E8B57" />
-            )
+              <MaterialIcons name="local-florist" size={20} color="#528508" />
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                style={{
+                  marginRight: 16,
+                }}
+                onPress={handleSearch}
+              >
+                <FontAwesome name="search" size={24} color="#fff" />
+              </TouchableOpacity>
+            ),
           }}
           component={CropsScreen}
         />
         <Drawer.Screen
-          name="Farmers"
+          name="Grower"
           options={{
-            drawerLabel: "Farmers",
-            title: "Farmers",
+            drawerLabel: "Growers",
+            title: "Growers",
             drawerIcon: () => (
-              <MaterialIcons name="check-circle" size={20} color="#2E8B57" />
-            )
+              <MaterialIcons name="check-circle" size={20} color="#528508" />
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                style={{
+                  marginRight: 16,
+                }}
+                onPress={handleSearch}
+              >
+                <FontAwesome name="search" size={24} color="#fff" />
+              </TouchableOpacity>
+            ),
           }}
           component={FarmersScreen}
         />
         <Drawer.Screen
-          name="Customers"
+          name="Buyers"
           options={{
-            drawerLabel: "Customers",
-            title: "Customers",
+            drawerLabel: "Buyers",
+            title: "Buyers",
             drawerIcon: () => (
-              <SimpleLineIcons name="user" size={20} color="#2E8B57" />
-            )
+              <SimpleLineIcons name="user" size={20} color="#528508" />
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                style={{
+                  marginRight: 16,
+                }}
+                onPress={handleSearch}
+              >
+                <FontAwesome name="search" size={24} color="#fff" />
+              </TouchableOpacity>
+            ),
           }}
           component={CustomersScreen}
         />
@@ -262,7 +301,7 @@ export default function AdminDashboardScreen({ navigation }) {
             drawerLabel: "Rate this App",
             title: "Rate this App",
             drawerIcon: () => (
-              <FontAwesome name="star" size={20} color="#2E8B57" />
+              <FontAwesome name="star" size={20} color="#528508" />
             )
           }}
           component={RateApp}
@@ -274,7 +313,7 @@ export default function AdminDashboardScreen({ navigation }) {
             drawerLabel: "Contact",
             title: "Contact",
             drawerIcon: () => (
-              <MaterialCommunityIcons name="message-alert-outline" size={20} color="#2E8B57" />
+              <MaterialCommunityIcons name="message-alert-outline" size={20} color="#528508" />
             )
           }}
           component={Contact}
@@ -285,7 +324,7 @@ export default function AdminDashboardScreen({ navigation }) {
             drawerLabel: "Share App",
             title: "Share App",
             drawerIcon: () => (
-              <MaterialCommunityIcons name="share" size={20} color="#2E8B57" />
+              <MaterialCommunityIcons name="share" size={20} color="#528508" />
             ),
           }}
           component={ShareAppScreen}

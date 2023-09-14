@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
 import React, { useContext,  useState, useEffect   } from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity} from "react-native";
 import {
   SimpleLineIcons,
   MaterialIcons,
@@ -13,7 +13,7 @@ import {
   DrawerItemList,
   createDrawerNavigator,
 } from "@react-navigation/drawer";
-import User from "./../assets/user.jpg";
+import User from "./../assets/person.png";
 import Contact from "./Contact";
 import FarmerLocationScreen from "./customer/FarmerLocationScreen";
 import CropsScreen from "./customer/CropsScreen";
@@ -92,7 +92,8 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
   };
   
   
-  
+  const handleSearch = (event) => {
+  };
   
   
 
@@ -113,7 +114,7 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
               }}
             >{user && user.data ? (
               <Image
-                source={{ uri: user.data.avatar_url }}
+                source={User}
                 style={{
                   height: 130,
                   width: 130,
@@ -152,10 +153,6 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
             </View>
 
             <DrawerItemList {...props} />
-            <Button name="logout" size={20} color="#2E8B57" onPress={onLogout}>
-            
-             <Text>Logout</Text> 
-            </Button>
 
           </SafeAreaView>
           );
@@ -166,7 +163,7 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
             width: 250,
           },
           headerStyle: {
-            backgroundColor: "#2E8B57",
+            backgroundColor: "#528508",
           },
           headerTintColor: "#fff",
           headerTitleStyle: {
@@ -183,7 +180,17 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
             drawerLabel: "Home",
             title: "Home",
             drawerIcon: () => (
-              <SimpleLineIcons name="home" size={20} color="#2E8B57" />
+              <SimpleLineIcons name="home" size={20} color="#528508" />
+            ),
+             headerRight: () => (
+              <TouchableOpacity
+                style={{
+                  marginRight: 16,
+                }}
+                onPress={onLogout}
+              >
+                <FontAwesome name="arrow-right" size={24} color="#fff" />
+              </TouchableOpacity>
             ),
           }}
           component={Home}
@@ -194,22 +201,32 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
             drawerLabel: "Crops",
             title: "Crops",
             drawerIcon: () => (
-              <MaterialIcons name="local-florist" size={20} color="#2E8B57" />
+              <MaterialIcons name="local-florist" size={20} color="#528508" />
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                style={{
+                  marginRight: 16,
+                }}
+                onPress={handleSearch}
+              >
+                <FontAwesome name="search" size={24} color="#fff" />
+              </TouchableOpacity>
             ),
           }}
           component={CropsScreen}
         />
-        <Drawer.Screen
+        {/* <Drawer.Screen
           name="Farmer Location"
           options={{
             drawerLabel: "Farmer Location",
             title: "Farmer Location",
             drawerIcon: () => (
-              <MaterialIcons name="timer" size={20} color="#2E8B57" />
+              <MaterialIcons name="timer" size={20} color="#528508" />
             ),
           }}
           component={FarmerLocationScreen}
-        />
+        /> */}
 
         <Drawer.Screen
           name="Rate this App"
@@ -217,7 +234,7 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
             drawerLabel: "Rate this App",
             title: "Rate this App",
             drawerIcon: () => (
-              <FontAwesome name="star" size={20} color="#2E8B57" />
+              <FontAwesome name="star" size={20} color="#528508" />
             ),
           }}
           component={RateApp}
@@ -232,7 +249,7 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
               <MaterialCommunityIcons
                 name="message-alert-outline"
                 size={20}
-                color="#2E8B57"
+                color="#528508"
               />
             ),
           }}
@@ -244,7 +261,7 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
             drawerLabel: "Share App",
             title: "Share App",
             drawerIcon: () => (
-              <MaterialCommunityIcons name="share" size={20} color="#2E8B57" />
+              <MaterialCommunityIcons name="share" size={20} color="#528508" />
             ),
           }}
           component={ShareAppScreen}

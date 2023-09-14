@@ -9,13 +9,19 @@ import CustomersDashboardScreen from './screens/CustomerDashboardScreen';
 import FarmerDashboardScreen from './screens/FarmerDashboardScreen';
 import ResetPasswordScreen from './screens/ResetPasswordScreen';
 import AdminDashboardScreen from './screens/AdminDashboaerdScreen';
+import AboutScreen from './screens/AboutScreen';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Location">
+      <Stack.Navigator initialRouteName="About">
+      <Stack.Screen
+          name="About"
+          component={AboutScreen}
+          options={{ title: 'About', headerShown: false }}
+        />
         <Stack.Screen
           name="Location"
           component={LocationScreen}

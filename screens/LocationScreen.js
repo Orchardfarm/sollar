@@ -5,6 +5,7 @@ import * as Location from "expo-location";
 import Constants from 'expo-constants';
 import Background from '../src/components/Background';
 import Button from '../src/components/Button';
+import { theme } from './../src/core/theme';
 
 const LocationScreen = ({navigation}) => {
 
@@ -151,10 +152,16 @@ const styles = StyleSheet.create({
     height: 60,
     alignItems: "center",
     justifyContent: "center",
-    borderColor: "#2E8B57",
+    borderColor: "#528508",
     borderWidth: 2
   },
-
+  button: {
+    backgroundColor: theme.colors.primary,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 5,
+    marginTop: 20,
+  },
   signinBtn: {
     width: "40%",
     borderRadius: 20,

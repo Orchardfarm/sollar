@@ -95,6 +95,7 @@ const FarmerLocationScreen = () => {
                       }
                     }}
                   >
+                    <Text style={styles.header}>Contact Details</Text>
                     <Text style={styles.customerDetailText}>
                       Phone Number: {selectedFarmer.phone_number}
                     </Text>

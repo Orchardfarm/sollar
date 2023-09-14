@@ -61,14 +61,16 @@ const CropsScreen = () => {
               <Text style={styles.cropDetailText}>Trees (0-3 years): {selectedCrop.attributes.trees_0_to_3}</Text>
               <Text style={styles.cropDetailText}>Trees (4-7 years): {selectedCrop.attributes.trees_4_to_7}</Text>
               <Text style={styles.cropDetailText}>Trees (7+ years): {selectedCrop.attributes.trees_7_plus}</Text>
-              <Text style={styles.cropDetailText}>Farmer Name: {selectedCrop.attributes.first_name}</Text>
-              <Text style={styles.cropDetailText} onPress={() => {
-                      const phoneNumber = selectedCrop.attributes.phone_number;
-                      if (phoneNumber) {
-                        Linking.openURL(`tel:${phoneNumber}`);
-                      }
-                    }}
-                  >Farmer Contact: {selectedCrop.attributes.phone_number}</Text>
+              <Text style={styles.header}>Grower contact Details</Text>
+              <Text style={styles.cropDetailText}>Grower Name: {selectedCrop.attributes.first_name}</Text>
+              <Text style={styles.cropDetailText} 
+              // onPress={() => {
+              //         const phoneNumber = selectedCrop.attributes.phone_number;
+              //         if (phoneNumber) {
+              //           Linking.openURL(`tel:${phoneNumber}`);
+              //         }
+              //       }}
+                  >Grower Contact: {selectedCrop.attributes.phone_number}</Text>
               {/* Add more crop details here if needed */}
               <Button mode="contained" onPress={closeCropPopup}>
                 <Text>Close</Text>

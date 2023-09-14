@@ -59,7 +59,7 @@ const FarmersScreen = () => {
   <Modal visible={showCustomerPopup} animationType="slide" transparent={true}>
     <View style={styles.modalContainer}>
       <View style={styles.popupContainer}>
-        <Text style={styles.header}>Farmer Details</Text>
+        <Text style={styles.header}>Grower Details</Text>
         {selectedCustomer && (
           <>
             <Image source={{ uri: selectedCustomer.avatar_url }} style={styles.customerAvatar} />
