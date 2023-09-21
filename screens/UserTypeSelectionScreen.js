@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Background from '../src/components/Background'
 import Logo from '../src/components/Logo'
 import Header from '../src/components/Header'
@@ -32,7 +32,23 @@ const UserTypeSelectionScreen = ({ navigation,route }) => {
     <Paragraph>
       Why are you here?.
     </Paragraph>
-    <Button
+    <TouchableOpacity
+        style={styles.button}
+        mode="outlined"
+      title="Farmer" onPress={handleFarmerRegistration}
+        // onPress={handleLogin}
+      >
+        <Text style={styles.buttonText}>Grower</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        mode="outlined"
+      title="Farmer" onPress={handleFarmerRegistration}
+        // onPress={handleLogin}
+      >
+        <Text style={styles.buttonText}>Buyer</Text>
+      </TouchableOpacity>
+    {/* <Button
       mode="outlined"
       title="Farmer" onPress={handleFarmerRegistration}
     >
@@ -43,7 +59,7 @@ const UserTypeSelectionScreen = ({ navigation,route }) => {
       title="Customer" onPress={handleCustomerRegistration} 
     >
       Buyer
-    </Button>
+    </Button> */}
   </Background>
   );
 };
@@ -64,6 +80,22 @@ const styles = StyleSheet.create({
     width: '80%',
     marginBottom: 20,
     borderColor: 'black',
+  },
+  button: {
+    backgroundColor: '#cecece',
+    borderColor: '#000',
+    paddingVertical: 12,
+    paddingHorizontal: 120,
+    borderRadius: 10,
+    marginTop: 10,
+    marginBottom: 20,
+    
+  },
+  buttonText: {
+    borderColor: '#528508',
+    fontSize: 16,
+    color: 'green',
+    fontWeight: 'bold',
   },
 });
 

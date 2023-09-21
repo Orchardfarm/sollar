@@ -83,12 +83,26 @@ const LocationScreen = ({navigation}) => {
       <Text style={styles.heading}>Turn on Location</Text>
       <Text style={styles.text}>Tap the location icon to enable location.</Text>
       <View style={{ flex: 1, height: 1, backgroundColor: 'black' }} />
-      <Button mode="contained" onPress={gotoLogin}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={gotoLogin}
+        // onPress={handleLogin}
+      >
+        <Text style={styles.buttonText}>Log In</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={gotoUserType}
+        // onPress={handleLogin}
+      >
+        <Text style={styles.buttonText}>Sign Up</Text>
+      </TouchableOpacity>
+      {/* <Button mode="contained" onPress={gotoLogin}>
         Login
       </Button>
       <Button mode="outlined" onPress={gotoUserType}>
         Sign Up
-      </Button>
+      </Button> */}
     </Background>
   );
 }
@@ -158,9 +172,15 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: theme.colors.primary,
     paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 5,
-    marginTop: 20,
+    paddingHorizontal: 120,
+    borderRadius: 10,
+    marginTop: 10,
+    marginBottom: 20,
+  },
+  buttonText: {
+    fontSize: 16,
+    color: 'white',
+    fontWeight: 'bold',
   },
   signinBtn: {
     width: "40%",
@@ -173,17 +193,17 @@ const styles = StyleSheet.create({
   spacingView: {
     width: '10%'
   },
-  signupText: {
-    color: "#324d78",
-    fontSize: 16,
-    letterSpacing: 5,
-    fontWeight: 'bold'
-  },
+  // signupText: {
+  //   color: "#fff",
+  //   fontSize: 16,
+  //   letterSpacing: 5,
+  //   fontWeight: 'bold'
+  // },
 
-  signinText: {
-    color: "#fff",
-    fontSize: 16,
-    letterSpacing: 5,
-    fontWeight: 'bold'
-  }
+  // signinText: {
+  //   color: "#fff",
+  //   fontSize: 16,
+  //   letterSpacing: 5,
+  //   fontWeight: 'bold'
+  // }
 })

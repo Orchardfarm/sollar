@@ -101,10 +101,15 @@ const LoginScreen = ({ navigation }) => {
             <Text style={styles.forgot}>Forgot your password?</Text>
           </TouchableOpacity>
         </View>
-        <Button mode="contained" onPress={handleLogin}>
-          Login
-        </Button>
-
+        {/* <Button mode="contained" onPress={handleLogin}> */}
+          {/* Login */}
+        {/* </Button> */}
+        <TouchableOpacity
+        style={styles.button}
+        onPress={handleLogin}
+      >
+        <Text style={styles.buttonText}>Log In</Text>
+      </TouchableOpacity>
         <View style={styles.row}>
           <Text>Don’t have an account? </Text>
           <TouchableOpacity onPress={() => navigation.replace("Location")}>
@@ -137,6 +142,18 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     justifyContent: "center", // Vertically center the content
+  },
+  button: {
+    backgroundColor: theme.colors.primary,
+    paddingVertical: 12,
+    paddingHorizontal: 120,
+    borderRadius: 10,
+    marginTop: 20,
+  },
+  buttonText: {
+    fontSize: 16,
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
 

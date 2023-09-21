@@ -115,13 +115,21 @@ const RegistrationScreen = ({ navigation, route }) => {
           value={phone_number}
           style={styles.input}
         />
-        <Button
+        <TouchableOpacity
+        style={styles.button}
+        mode="contained"
+      title="Farmer" onPress={handleRegistration}
+        // onPress={handleLogin}
+      >
+        <Text style={styles.buttonText}>Sign Up</Text>
+      </TouchableOpacity>
+        {/* <Button
           mode="contained"
           onPress={handleRegistration}
           style={{ marginTop: 24 }}
         >
           Sign Up
-        </Button>
+        </Button> */}
         <View style={styles.row}>
           <Text>Already have an account? </Text>
           <TouchableOpacity onPress={() => navigation.replace('Login')}>
@@ -146,6 +154,20 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     justifyContent: "center", // Vertically center the content
+  },
+  button: {
+    backgroundColor: theme.colors.primary,
+    paddingVertical: 12,
+    paddingHorizontal: 120,
+    borderRadius: 10,
+    marginTop: 10,
+    marginBottom: 20,
+    
+  },
+  buttonText: {
+    fontSize: 16,
+    color: '#fff',
+    fontWeight: 'bold',
   },
 })
 
