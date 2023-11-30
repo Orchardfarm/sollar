@@ -70,7 +70,7 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
       const authToken = await AsyncStorage.getItem("authToken");
 
       const response = await fetch(
-        "https://farmb.onrender.com/users/sign_out",
+        "https://farmb-wirq.onrender.com/users/sign_out",
         {
           method: "DELETE",
           headers: {
