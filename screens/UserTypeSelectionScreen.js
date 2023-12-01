@@ -38,15 +38,15 @@ const UserTypeSelectionScreen = ({ navigation,route }) => {
       title="Farmer" onPress={handleFarmerRegistration}
         // onPress={handleLogin}
       >
-        <Text style={styles.buttonText}>Grower</Text>
+        <Text style={styles.buttonText}>Farmer</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
         mode="outlined"
-      title="Farmer" onPress={handleFarmerRegistration}
+      title="Customer" onPress={handleCustomerRegistration}
         // onPress={handleLogin}
       >
-        <Text style={styles.buttonText}>Buyer</Text>
+        <Text style={styles.buttonText}>Customer</Text>
       </TouchableOpacity>
     {/* <Button
       mode="outlined"
