@@ -61,7 +61,7 @@ const LoginScreen = ({ navigation }) => {
           navigation.navigate("AdminDashboard");
           roleMessage = "Admin";
         }
-  
+
         // Alert the name of the logged-in user
         const userName = `${user.status.data.first_name} ${user.status.data.last_name}`;
         alert(`Welcome, ${userName}`);
@@ -102,14 +102,14 @@ const LoginScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         {/* <Button mode="contained" onPress={handleLogin}> */}
-          {/* Login */}
+        {/* Login */}
         {/* </Button> */}
         <TouchableOpacity
-        style={styles.button}
-        onPress={handleLogin}
-      >
-        <Text style={styles.buttonText}>Log In</Text>
-      </TouchableOpacity>
+          style={styles.button}
+          onPress={handleLogin}
+        >
+          <Text style={styles.buttonText}>Log In</Text>
+        </TouchableOpacity>
         <View style={styles.row}>
           <Text>Don’t have an account? </Text>
           <TouchableOpacity onPress={() => navigation.replace("Location")}>

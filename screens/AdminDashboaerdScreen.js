@@ -78,7 +78,6 @@ export default function AdminDashboardScreen({ navigation }) {
   const onLogout = async () => {
     try {
       const authToken = await AsyncStorage.getItem("authToken");
-
       const response = await fetch(
         "https://farmb-99u5.onrender.com/users/sign_out",
         {
