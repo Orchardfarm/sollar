@@ -7,6 +7,7 @@ export default function TextInput({ errorText, description, ...props }) {
   return (
     <View style={styles.container}>
       <Input
+      placeholderTextColor={theme.colors.secondary}
         style={styles.input}
         selectionColor={theme.colors.primary}
         underlineColor="transparent"
@@ -25,6 +26,7 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     marginVertical: 12,
+    borderColor : 'black',
   },
   input: {
     backgroundColor: theme.colors.surface,

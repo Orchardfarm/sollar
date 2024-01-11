@@ -42,7 +42,6 @@ const RegistrationScreen = ({ navigation, route }) => {
         },
         body: JSON.stringify(requestData),
       });
-      console.log(requestData)
 
       if (response.ok) {
         // Registration successful, show an alert and navigate
@@ -69,7 +68,6 @@ const RegistrationScreen = ({ navigation, route }) => {
       navigation.navigate('Location');
     }
   };
-
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -110,15 +108,16 @@ const RegistrationScreen = ({ navigation, route }) => {
           style={styles.input}
         />
         <TextInput
+          keyboardType="numeric"
           placeholder="Phone number"
           onChangeText={(text) => setPhone(text)}
           value={phone_number}
           style={styles.input}
         />
         <TouchableOpacity
-        style={styles.button}
-        mode="contained"
-      title="Farmer" onPress={handleRegistration}
+          style={styles.button}
+          mode="contained"
+          title="Farmer" onPress={handleRegistration}
         // onPress={handleLogin}
       >
         <Text style={styles.buttonText}>Sign Up</Text>
@@ -126,7 +125,7 @@ const RegistrationScreen = ({ navigation, route }) => {
         {/* <Button
           mode="contained"
           onPress={handleRegistration}
-          style={{ marginTop: 24 }}
+style={{ marginTop: 24 }}
         >
           Sign Up
         </Button> */}
@@ -143,6 +142,24 @@ const RegistrationScreen = ({ navigation, route }) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    justifyContent: "center", // Vertically center the content
+  },
+  button: {
+    backgroundColor: theme.colors.primary,
+    paddingVertical: 12,
+    borderRadius: 50,
+    marginTop: 10,
+    marginBottom: 20,
+    width: 300,
+  },
+  buttonText: {
+    fontSize: 16,
+    color: '#fff',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
   row: {
     flexDirection: 'row',
     marginTop: 4,
@@ -151,24 +168,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: theme.colors.primary,
   },
-  container: {
-    flexGrow: 1,
-    justifyContent: "center", // Vertically center the content
-  },
-  button: {
-    backgroundColor: theme.colors.primary,
-    paddingVertical: 12,
-    paddingHorizontal: 120,
-    borderRadius: 10,
-    marginTop: 10,
-    marginBottom: 20,
-    
-  },
-  buttonText: {
-    fontSize: 16,
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-})
+});
 
 export default RegistrationScreen;

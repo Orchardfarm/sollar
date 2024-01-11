@@ -29,7 +29,7 @@ const UserTypeSelectionScreen = ({ navigation,route }) => {
       <BackButton goBack={navigation.goBack} />
       <Logo />
     <Header>The Orchard</Header>
-    <Paragraph>
+    <Paragraph >
       Why are you here?.
     </Paragraph>
     <TouchableOpacity
@@ -85,17 +85,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#cecece',
     borderColor: '#000',
     paddingVertical: 12,
-    paddingHorizontal: 120,
-    borderRadius: 10,
+    borderRadius: 50,
     marginTop: 10,
     marginBottom: 20,
-    
+    width : 200
   },
   buttonText: {
     borderColor: '#528508',
     fontSize: 16,
     color: 'green',
     fontWeight: 'bold',
+    textAlign :'center',
+    fontWeight: '800',
   },
 });
 

@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   },
   cropContainer: {
     width: "45%", // Adjust the width as needed to fit two columns
-    margin: 5,
+    margin: 8,
     alignItems: "center", // Center the content horizontally
     backgroundColor: "#ffffff",
     borderRadius: 10,

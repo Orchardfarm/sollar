@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
   forgot: {
     fontSize: 13,
     color: theme.colors.secondary,
+    fontWeight : '700'
   },
   link: {
     fontWeight: "bold",
@@ -147,8 +148,9 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.primary,
     paddingVertical: 12,
     paddingHorizontal: 120,
-    borderRadius: 10,
-    marginTop: 20,
+    borderRadius: 50,
+    marginTop: 10,
+    marginBottom : 15
   },
   buttonText: {
     fontSize: 16,
