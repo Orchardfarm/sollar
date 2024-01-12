@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: theme.colors.surface,
+    textAlign : 'center'
   },
   description: {
     fontSize: 13,
