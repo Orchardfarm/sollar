@@ -24,6 +24,7 @@ import Button from "../src/components/Button";
 import ShareAppScreen from "./ShareAppScreen";
 var url = base.BASE_URL
 import * as base from '../env'
+import cartScreen from "./customer/cartScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -238,6 +239,17 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
             ),
           }}
           component={RateApp}
+        />
+           <Drawer.Screen
+          name="cart"
+          options={{
+            drawerLabel: "cart",
+            title: "cart",
+            drawerIcon: () => (
+              <FontAwesome name="shopping-cart" size={20} color="#528508" />
+            )
+          }}
+          component={cartScreen}
         />
 
         <Drawer.Screen
