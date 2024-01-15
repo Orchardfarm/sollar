@@ -96,7 +96,8 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
   const handleSearch = (event) => {
   };
   
-  
+  console.log("User:", user?.data?.role);
+  console.log("User:", user?.data?.role);
 
   return (
     <NavigationContainer independent={true}>
@@ -196,7 +197,7 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
           }}
           component={Home}
         />
-        <Drawer.Screen
+        {/* <Drawer.Screen
           name="Crops"
           options={{
             drawerLabel: "Crops",
@@ -216,7 +217,7 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
             ),
           }}
           component={CropsScreen}
-        />
+        /> */}
         {/* <Drawer.Screen
           name="Farmer Location"
           options={{
