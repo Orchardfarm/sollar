@@ -222,7 +222,7 @@ const CropsScreen = () => {
         keyExtractor={(item) => item.id}
         style={styles.cropList}
       />
-      <View style={styles.cartContainer}>
+      {/* <View style={styles.cartContainer}>
         <Text style={styles.cartTitle}>Cart</Text>
         <ScrollView showsVerticalScrollIndicator={false}>
           <FlatList
@@ -236,7 +236,7 @@ const CropsScreen = () => {
         <Button mode="contained" onPress={initiatePayment}>
           <Text>Checkout</Text>
         </Button>
-      </View>
+      </View> */}
 
       {selectedCrop && showCropPopup && (
         <Modal visible={true} animationType="slide" transparent={true}>

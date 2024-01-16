@@ -517,7 +517,7 @@ const CropsScreen = () => {
             <TouchableOpacity onPress={closeEditPopup} style={styles.closeIcon}>
               <Icon name="close" size={24} color={theme.colors.primary} />
             </TouchableOpacity>
-            <ScrollView contentContainerStyle={styles.scrollContainer}>
+            <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
               <Text style={styles.header}>Edit Crop</Text>
               <TextInput
                 style={styles.smallInput}
@@ -614,21 +614,21 @@ const styles = StyleSheet.create({
     width: '100%',
     flex: 1,
     marginBottom: 10,
-    backgroundColor: '#F2F2F2',
+    backgroundColor: '#f0f0f0',
     borderRadius: 5,
     paddingHorizontal: 12,
   },
   picker: {
     width: 300,
     marginBottom: 10,
-    backgroundColor: '#F2F2F2',
+    backgroundColor: '#f0f0f0',
     borderRadius: 5,
   },
   cropItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#f0f0f0',
     borderRadius: 5,
     padding: 10,
     marginBottom: 10,
