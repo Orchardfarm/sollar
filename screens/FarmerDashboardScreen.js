@@ -20,6 +20,7 @@ import Button from "../src/components/Button";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ShareAppScreen from "./ShareAppScreen";
 import * as base from '../env'
+import IssuesScreen from "./farmer/IssuesScreen";
 var url = base.BASE_URL
 
 
@@ -240,12 +241,38 @@ export default function FarmerDashboardScreen({ navigation }) {
           }}
           component={CropsScreen}
         />
+             <Drawer.Screen
+          name="Issues"
+          options={{
+            drawerLabel: "Issues",
+            color: "#ffffff",
+            title: "Issues",
+            drawerIcon: () => (
+              <MaterialIcons
+                name="local-florist"
+                size={20}
+                color="#528508"
+              />
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                style={{
+                  marginRight: 16,
+                }}
+                onPress={handleSearch}
+              >
+                <FontAwesome name="search" size={24} color="#fff" />
+              </TouchableOpacity>
+            ),
+          }}
+          component={IssuesScreen}
+        />
          <Drawer.Screen
           name="Products"
           options={{
             drawerLabel: "Products",
             color: "#ffffff",
-            title: "Crops",
+            title: "Products",
             drawerIcon: () => (
               <MaterialIcons
                 name="shopping-basket"

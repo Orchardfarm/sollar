@@ -25,6 +25,7 @@ import ShareAppScreen from "./ShareAppScreen";
 var url = base.BASE_URL
 import * as base from '../env'
 import cartScreen from "./customer/cartScreen";
+import ProductScreen from "./customer/ProductScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -197,13 +198,18 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
           }}
           component={Home}
         />
-        {/* <Drawer.Screen
-          name="Crops"
+        <Drawer.Screen
+          name="Products"
           options={{
-            drawerLabel: "Crops",
-            title: "Crops",
+            drawerLabel: "Products",
+            color: "#ffffff",
+            title: "Products",
             drawerIcon: () => (
-              <MaterialIcons name="local-florist" size={20} color="#528508" />
+              <MaterialIcons
+                name="shopping-basket"
+                size={20}
+                color="#528508"
+              />
             ),
             headerRight: () => (
               <TouchableOpacity
@@ -216,8 +222,8 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
               </TouchableOpacity>
             ),
           }}
-          component={CropsScreen}
-        /> */}
+          component={ProductScreen}
+        />
         {/* <Drawer.Screen
           name="Farmer Location"
           options={{
