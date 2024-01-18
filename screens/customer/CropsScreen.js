@@ -171,7 +171,7 @@ const CropsScreen = () => {
         console.log("Payment initiation response:", stkResponse);
 
         const smsResponse = await fetch(
-          "https://farmb-99u5.onrender.com/send_sms",
+          "https://farm-x64x.onrender.com/send_sms",
           {
             method: "POST",
             body: JSON.stringify({

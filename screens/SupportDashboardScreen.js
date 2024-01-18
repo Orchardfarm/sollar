@@ -15,7 +15,6 @@ import Contact from "./Contact";
 import Home from "./farmer/Home";
 import RateApp from "./RateApp";
 import CropsScreen from "./farmer/CropsScreen";
-import ProductScreen from "./farmer/ProductScreen"
 import Button from "../src/components/Button";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ShareAppScreen from "./ShareAppScreen";
@@ -25,7 +24,7 @@ var url = base.BASE_URL
 
 const Drawer = createDrawerNavigator();
 
-export default function FarmerDashboardScreen({ navigation }) {
+export default function SupportDashboardScreen({ navigation }) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -239,32 +238,6 @@ export default function FarmerDashboardScreen({ navigation }) {
             ),
           }}
           component={CropsScreen}
-        />
-         <Drawer.Screen
-          name="Products"
-          options={{
-            drawerLabel: "Products",
-            color: "#ffffff",
-            title: "Crops",
-            drawerIcon: () => (
-              <MaterialIcons
-                name="shopping-basket"
-                size={20}
-                color="#528508"
-              />
-            ),
-            headerRight: () => (
-              <TouchableOpacity
-                style={{
-                  marginRight: 16,
-                }}
-                onPress={handleSearch}
-              >
-                <FontAwesome name="search" size={24} color="#fff" />
-              </TouchableOpacity>
-            ),
-          }}
-          component={ProductScreen}
         />
         <Drawer.Screen
           name="Rate this App"

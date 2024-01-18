@@ -22,6 +22,9 @@ const UserTypeSelectionScreen = ({ navigation,route }) => {
   const handleCustomerRegistration = () => {
     navigation.navigate('Register', { role: 0,location:loc });
   };
+  const handlefarmSpecialistRegistration = () => {
+    navigation.navigate('Register', { role: 2,location:loc });
+  };
 
   return (
    
@@ -47,6 +50,14 @@ const UserTypeSelectionScreen = ({ navigation,route }) => {
         // onPress={handleLogin}
       >
         <Text style={styles.buttonText}>Customer</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        mode="outlined"
+      title="Farmer" onPress={handlefarmSpecialistRegistration}
+        // onPress={handleLogin}
+      >
+        <Text style={styles.buttonText}>Farm Support</Text>
       </TouchableOpacity>
     {/* <Button
       mode="outlined"

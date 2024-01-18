@@ -1,3 +1,3 @@
-export const BASE_URL = "https://farmb-99u5.onrender.com"
+export const BASE_URL = "https://farm-x64x.onrender.com"
 
       

@@ -10,6 +10,7 @@ import FarmerDashboardScreen from './screens/FarmerDashboardScreen';
 import ResetPasswordScreen from './screens/ResetPasswordScreen';
 import AdminDashboardScreen from './screens/AdminDashboaerdScreen';
 import AboutScreen from './screens/AboutScreen';
+import SupportDashboardScreen from './screens/SupportDashboardScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -60,6 +61,11 @@ const App = () => {
          <Stack.Screen
           name="AdminDashboard"
           component={AdminDashboardScreen}
+          options={{ title: 'Dashboard', headerShown: false }}
+        />
+          <Stack.Screen
+          name="Special"
+          component={SupportDashboardScreen}
           options={{ title: 'Dashboard', headerShown: false }}
         />
      

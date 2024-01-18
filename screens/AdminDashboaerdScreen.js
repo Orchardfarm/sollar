@@ -79,7 +79,7 @@ export default function AdminDashboardScreen({ navigation }) {
     try {
       const authToken = await AsyncStorage.getItem("authToken");
       const response = await fetch(
-        "https://farmb-99u5.onrender.com/users/sign_out",
+        "https://farm-x64x.onrender.com/users/sign_out",
         {
           method: "DELETE",
           headers: {

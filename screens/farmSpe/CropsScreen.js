@@ -38,6 +38,8 @@ const CropsScreen = () => {
   const [trees4To7Edit, setTrees4To7Edit] = useState('');
   const [trees7PlusEdit, setTrees7PlusEdit] = useState('');
   const [farmPlotNoEdit, setFarmPlotNoEdit] = useState('');
+  const [price, setPrice] = useState('');
+  const [quantity, setQuantity] = useState('');
 
 
 
@@ -108,6 +110,8 @@ const CropsScreen = () => {
           trees_4_to_7: trees4To7,
           trees_7_plus: trees7Plus,
           farm_plot_no: farmPlotNo,
+          price: price,
+          quantity: quantity,
         }),
       });
       const data = await response.json();
@@ -125,6 +129,8 @@ const CropsScreen = () => {
         setTrees4To7('');
         setTrees7Plus('');
         setFarmPlotNo('');
+        setPrice('');
+        setQuantity('');
 
         setShowAddPopup(false);
       } else {
@@ -149,6 +155,8 @@ const CropsScreen = () => {
     setTrees4To7Edit(crop.attributes.trees_4_to_7);
     setTrees7PlusEdit(crop.attributes.trees_7_plus);
     setFarmPlotNoEdit(crop.attributes.farm_plot_no);
+    setPrice(crop.attributes.price);
+    setQuantity(crop.attributes.quantity);
     // setShowEditPopup(true);
   };
 
@@ -214,6 +222,14 @@ const CropsScreen = () => {
                 <Text style={styles.detailLabel}>Farm Plot No:</Text>
                 <Text style={styles.detailValue}>{selectedCrop.attributes.farm_plot_no}</Text>
               </View>
+              <View style={styles.detailItem}>
+                <Text style={styles.detailLabel}>Trees 7+:</Text>
+                <Text style={styles.detailValue}>{selectedCrop.attributes.price}</Text>
+              </View>
+              <View style={styles.detailItem}>
+                <Text style={styles.detailLabel}>Farm Plot No:</Text>
+                <Text style={styles.detailValue}>{selectedCrop.attributes.quantity}</Text>
+              </View>
               <View style={styles.buttonContainer}>
                 <View style={styles.buttonContainer}>
                   <TouchableOpacity onPress={() => openEditPopup()}>
@@ -251,6 +267,8 @@ const CropsScreen = () => {
           trees_4_to_7: trees4To7Edit,
           trees_7_plus: trees7PlusEdit,
           farm_plot_no: farmPlotNoEdit,
+          price: price,
+          quantity: quantity,
         }),
       });
       const data = await response.json();
@@ -357,6 +375,8 @@ const CropsScreen = () => {
     setTrees4To7Edit(crop.attributes.trees_4_to_7);
     setTrees7PlusEdit(crop.attributes.trees_7_plus);
     setFarmPlotNoEdit(crop.attributes.farm_plot_no);
+    setPrice(crop.attributes.price);
+    setQuantity(crop.attributes.quantity);
     setShowEditPopup(true); // Open the edit popup
   };
 
@@ -462,7 +482,18 @@ const CropsScreen = () => {
                     value={farmPlotNo}
                     onChangeText={(text) => setFarmPlotNo(text)}
                   />
-                  
+                   <TextInput
+                    style={styles.smallInput}
+                    placeholder="Enter price"
+                    value={price}
+                    onChangeText={(text) => setPrice(text)}
+                  />
+                  <TextInput
+                    style={styles.smallInput}
+                    placeholder="Enter quantity"
+                    value={quantity}
+                    onChangeText={(text) => setQuantity(text)}
+                  />
 
                   <Button mode="contained" onPress={addCrop}>
                     <Text>Add</Text>
@@ -524,7 +555,18 @@ const CropsScreen = () => {
                 value={farmPlotNoEdit}
                 onChangeText={(text) => setFarmPlotNoEdit(text)}
               />
-             
+               <TextInput
+                style={styles.smallInput}
+                placeholder="Trees 7+"
+                value={price}
+                onChangeText={(text) => setPrice(text)}
+              />
+              <TextInput
+                style={styles.smallInput}
+                placeholder="Farm Plot No"
+                value={quantity}
+                onChangeText={(text) => setQuantity(text)}
+              />
               {/* Update Button */}
               <Button mode="contained" onPress={confirmUpdateCrop}>
                 <Text>Update</Text>
