@@ -394,7 +394,7 @@ const CropsScreen = () => {
         <Modal visible={showAddPopup} animationType="slide" transparent={true}>
           <View style={styles.modalContainer}>
             <View style={styles.popupContainer}>
-              <ScrollView contentContainerStyle={styles.scrollContainer}>
+              <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
                 <Text style={styles.header}>Add Crop</Text>
                 <View style={styles.inputContainer}>
                   <Picker
@@ -586,11 +586,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#ffffff',
     borderRadius: 5,
     padding: 10,
     marginBottom: 10,
     elevation: 2,
+    height : 60
   },
   cropType: {
     fontSize: 16,

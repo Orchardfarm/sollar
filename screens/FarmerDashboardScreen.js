@@ -249,7 +249,7 @@ export default function FarmerDashboardScreen({ navigation }) {
             title: "Issues",
             drawerIcon: () => (
               <MaterialIcons
-                name="local-florist"
+                name="bug-report"
                 size={20}
                 color="#528508"
               />
