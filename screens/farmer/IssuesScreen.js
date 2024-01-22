@@ -82,7 +82,9 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     padding: 16,
     alignItems: "center",
-elevation : 2
+elevation : 2,
+    backgroundColor : '#fff',
+    borderRadius : 15
   },
   issueImage: {
     width: 100,
