@@ -81,15 +81,7 @@ const Home = () => {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <TouchableOpacity
-          style={[
-            styles.bcontainer,
-            { flexDirection: "row", paddingHorizontal: 15 },
-          ]}
-        >
-          <Text style={styles.header}>Total Crops</Text>
-          <Text style={styles.totalFruits}>: {cropData.length}</Text>
-        </TouchableOpacity>
+   
         <View style={styles.cropGrid}>
           {cropNames.map((cropName, index) => {
             const totalForCrop = cropData.filter(
@@ -129,10 +121,15 @@ const Home = () => {
           </TouchableOpacity>
         </View>
 
-        {/* Add other content related to the dashboard here */}
-        <View style={styles.addFruitContainer}>
-          {/* Existing code for adding fruits */}
-        </View>
+        <TouchableOpacity
+          style={[
+            styles.bcontainer,
+            { flexDirection: "row", paddingHorizontal: 15 },
+          ]}
+        >
+          <Text style={styles.header}>Total Crops</Text>
+          <Text style={styles.totalFruits}>: {cropData.length}</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
