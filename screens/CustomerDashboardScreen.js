@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
-import React, { useContext,  useState, useEffect   } from "react";
-import { View, Text, Image, TouchableOpacity} from "react-native";
+import React, { useContext, useState, useEffect } from "react";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import {
   SimpleLineIcons,
   MaterialIcons,
@@ -22,21 +22,22 @@ import RateApp from "./RateApp";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Button from "../src/components/Button";
 import ShareAppScreen from "./ShareAppScreen";
-var url = base.BASE_URL
-import * as base from '../env'
+var url = base.BASE_URL;
+import * as base from "../env";
 import cartScreen from "./customer/cartScreen";
 import ProductScreen from "./customer/ProductScreen";
 
 const Drawer = createDrawerNavigator();
 
-export default function CustomersDashboardScreen({ navigation }) {const [user, setUser] = useState(null);
+export default function CustomersDashboardScreen({ navigation }) {
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const authToken = await AsyncStorage.getItem('authToken');
+        const authToken = await AsyncStorage.getItem("authToken");
         if (authToken) {
-          const response = await fetch(url + '/current_user', {
+          const response = await fetch(url + "/current_user", {
             headers: {
               Authorization: `Bearer ${authToken}`,
             },
@@ -45,15 +46,14 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
           if (response.ok) {
             const userData = await response.json();
             setUser(userData);
-            console.log('User:', user);
-
+            console.log("User:", user);
           } else {
             // Handle fetch user data error
           }
         }
       } catch (error) {
         // Handle any errors that occur during AsyncStorage or fetch operations
-        console.error('Error fetching user data:', error);
+        console.error("Error fetching user data:", error);
       }
     };
 
@@ -92,11 +92,9 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
       console.error("An error occurred:", error);
     }
   };
-  
-  
-  const handleSearch = (event) => {
-  };
-  
+
+  const handleSearch = (event) => {};
+
   console.log("User:", user?.data?.role);
   console.log("User:", user?.data?.role);
 
@@ -106,64 +104,64 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
         drawerContent={(props) => {
           return (
             <SafeAreaView>
-            <View
-              style={{
-                height: 200,
-                width: '100%',
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderBottomColor: '#f4f4f4',
-                borderBottomWidth: 1,
-              }}
-            >{user && user.data ? (
-              <Image
-                source={User}
+              <View
                 style={{
-                  height: 130,
-                  width: 130,
-                  borderRadius: 65,
-                }}
-              />
-            ) : (
-              <Image
-                source={User} // You can provide a default image source if the user doesn't have an avatar
-                style={{
-                  height: 130,
-                  width: 130,
-                  borderRadius: 65,
-                }}
-              />
-            )}
-            <Text
-              style={{
-                fontSize: 22,
-                marginVertical: 6,
-                fontWeight: 'bold',
-                color: '#111',
-              }}
-            >
-              {user && user.data ? user.data.first_name : 'User Email'}
-            </Text>
-            
-              <Text
-                style={{
-                  fontSize: 16,
-                  color: '#111',
+                  height: 200,
+                  width: "100%",
+                  justifyContent: "center",
+                  alignItems: "center",
                 }}
               >
-                 {user && user.data ? user.data.phone_number : 'User Email'}
-              </Text>
-            </View>
+                {user && user.data ? (
+                  <Image
+                    source={User}
+                    style={{
+                      height: 130,
+                      width: 130,
+                      borderRadius: 65,
+                    }}
+                  />
+                ) : (
+                  <Image
+                    source={User} 
+                    style={{
+                      height: 130,
+                      width: 130,
+                      borderRadius: 65,
+                    }}
+                  />
+                )}
+                <Text
+                  style={{
+                    fontSize: 22,
+                    marginVertical: 6,
+                    fontWeight: "bold",
+                    color: "#111",
+                  }}
+                >
+                  {user && user.data ? user.data.first_name : "User Email"}
+                </Text>
 
-            <DrawerItemList {...props} />
+                <Text
+                  style={{
+                    fontSize: 16,
+                    color: "#111",
+                  }}
+                >
+                  {user && user.data ? user.data.phone_number : "User Email"}
+                </Text>
+              </View>
 
-          </SafeAreaView>
+              <DrawerItemList {...props} />
+            </SafeAreaView>
           );
         }}
         screenOptions={{
           drawerStyle: {
-            backgroundColor: "#fff",
+            backgroundColor: "#528508",
             width: 250,
+            borderWidth : 1,
+            borderBottomColor : 'black'
           },
           headerStyle: {
             backgroundColor: "#528508",
@@ -178,14 +176,16 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
         }}
       >
         <Drawer.Screen
+        
           name="Home"
           options={{
             drawerLabel: "Home",
+            
             title: "Home",
             drawerIcon: () => (
               <SimpleLineIcons name="home" size={20} color="#528508" />
             ),
-             headerRight: () => (
+            headerRight: () => (
               <TouchableOpacity
                 style={{
                   marginRight: 16,
@@ -205,11 +205,7 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
             color: "#ffffff",
             title: "Products",
             drawerIcon: () => (
-              <MaterialIcons
-                name="shopping-basket"
-                size={20}
-                color="#528508"
-              />
+              <MaterialIcons name="shopping-basket" size={20} color="#528508" />
             ),
             headerRight: () => (
               <TouchableOpacity
@@ -247,14 +243,14 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
           }}
           component={RateApp}
         />
-           <Drawer.Screen
+        <Drawer.Screen
           name="cart"
           options={{
             drawerLabel: "cart",
             title: "cart",
             drawerIcon: () => (
               <FontAwesome name="shopping-cart" size={20} color="#528508" />
-            )
+            ),
           }}
           component={cartScreen}
         />
@@ -285,7 +281,6 @@ export default function CustomersDashboardScreen({ navigation }) {const [user, s
           }}
           component={ShareAppScreen}
         />
-
       </Drawer.Navigator>
     </NavigationContainer>
   );

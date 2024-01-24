@@ -49,45 +49,107 @@ const Home = () => {
       alert(error);
     }
   };
-  return (
-    <ScrollView>
-      <View style={styles.container}>
-        <TouchableOpacity
-          style={[
-            styles.bcontainer,
-            { flexDirection: "row", paddingHorizontal: 15 },
-          ]}
-        >
-          <Text style={styles.header}>Total Crops</Text>
-          <Text style={styles.totalFruits}>: {cropData.length}</Text>
-        </TouchableOpacity>
-        <View style={styles.cropGrid}>
-          {cropNames.map((cropName, index) => {
-            const totalForCrop = cropData.filter(
-              (data) => data.attributes.crop_name === cropName
-            ).length;
-            return (
-              <View key={index} style={styles.cropContainer}>
-                <Image
-                  style={styles.cropImage}
-                  source={cropImageMapping[cropName]}
-                />
-                <View style={{ flex: 1, flexDirection: "column" }}>
-                  <View style={[styles.cropInfo, { flex: 0.5 }]}>
-                    <Text style={styles.cropName}>{cropName}</Text>
-                  </View>
-                  <View style={[styles.cropInfo, { flex: 0.5 }]}>
-                    <Text style={styles.cropTotal}>Total: {totalForCrop}</Text>
-                  </View>
-                </View>
-              </View>
-            );
-          })}
-        </View>
 
-        {/* Add other content related to the dashboard here */}
-        <View style={styles.addFruitContainer}>
-          {/* Existing code for adding fruits */}
+  return (
+    <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
+      <View style={styles.container}>
+        <View style={{ backgroundColor: "white" }}>
+          <View
+            style={{
+              height: 330,
+              backgroundColor: "#2d4c35",
+              borderBottomLeftRadius: 80,
+              borderBottomRightRadius: 80,
+            }}
+          >
+            <View
+              style={[
+                styles.bcontainer,
+                { flexDirection: "row", paddingHorizontal: 15, marginTop: 40 , flexDirection : 'column' , alignItems : 'flex-start' },
+              ]}
+            >
+              <Text style={styles.header}>Welcome famer</Text>
+              <Text style={styles.totalFruits}> kaara</Text>
+            </View>
+          </View>
+          <View
+            style={{
+              height: 250,
+              backgroundColor: "white",
+              width: 370,
+              alignSelf: "center",
+              borderRadius: 20,
+              marginTop: -180,
+              elevation: 10,
+            }}
+          >
+            <View style={styles.cropGrid}>
+              {cropNames.slice(0, 6).map((cropName, index) => {
+                const totalForCrop = cropData.filter(
+                  (data) => data.attributes.crop_name === cropName
+                ).length;
+                return (
+                  <View key={index} style={styles.cropContainer}>
+                    <Text style={styles.cropName}> {cropName}</Text>
+                    <Image
+                      style={styles.cropImage}
+                      source={cropImageMapping[cropName]} // Set the image source based on the crop name
+                    />
+                    <View></View>
+                    <View>
+                      <Text style={styles.cropTotal}>
+                        Total: {totalForCrop}
+                      </Text>
+                    </View>
+                  </View>
+                );
+              })}
+            </View>
+          </View>
+          <Text style={styles.featured}>featured</Text>
+          <ScrollView
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            style={{
+              height: 150,
+              marginTop: 20,
+            }}
+          >
+            {cropNames.map((cropName, index) => {
+              return (
+                <TouchableOpacity
+                  key={index}
+                  onPress={() => setCropName(cropName)}
+                  style={styles.cropButton}
+                >
+                  <Text style={styles.cropButtonText}>{cropName}</Text>
+                  <Image
+                    source={cropImageMapping[cropName]}
+                    style={styles.cropImage}
+                  />
+                </TouchableOpacity>
+              );
+            })}
+          </ScrollView>
+          <View
+            style={{
+              height: 180,
+              backgroundColor: "#2d4c35",
+              borderTopRightRadius: 120,
+              borderTopLeftRadius: 120,
+              marginTop : 20
+            }}
+          >
+             <TouchableOpacity
+              style={[
+                styles.bcontainer,
+                { flexDirection: "row", paddingHorizontal: 15, marginTop: 70 , borderRadius : 100  },
+              ]}
+            >
+              <Text style={styles.header}>Total Crops</Text>
+              <Text style={styles.totalFruits}>: {cropData.length}</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </ScrollView>
@@ -98,7 +160,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f2f2f2",
-    padding: 20,
+    position: "relative",
   },
   bcontainer: {
     flexDirection: "column",
@@ -106,17 +168,39 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     borderRadius: 10,
     padding: 10,
-    marginVertical: 10,
+
     alignItems: "center",
+    marginHorizontal: 20,
   },
-  addFruitContainer: {
-    // Your styles for the container
+  cropButton: {
+    backgroundColor: "white",
+    borderRadius: 10,
+    padding: 10,
+    height: 100,
+    width: 130,
+    margin: 10,
+    alignContent: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 10,
+    elevation: 10,
+    borderRadius: 10,
+    padding: 10,
+    marginHorizontal: 20,
+    paddingHorizontal: 20,
   },
   header: {
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 10,
     color: theme.colors.primary,
+  },
+  featured: {
+    marginTop: 20,
+    marginHorizontal: 20,
+    fontSize: 20,
+    fontWeight: "bold",
+    textTransform: "capitalize",
   },
   totalFarmers: {
     fontSize: 20,
@@ -128,36 +212,62 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: theme.colors.text,
   },
-  cropGrid: {
-    flexDirection: "column",
-    flexWrap: "wrap", // Wrap to the next row if the screen width is not enough
-    justifyContent: "center", // Center the content horizontally
-    marginTop: 0,
+  container: {
+    flex: 1,
+    backgroundColor: "#f2f2f2",
+    position: "relative",
   },
-  cropContainer: {
-    margin: 5,
-    flexDirection: "row",
-    width: "100%",
-    alignItems: "center", // Center the content horizontally
+  bcontainer: {
+    flexDirection: "column",
+    justifyContent: "space-between",
     backgroundColor: "#ffffff",
     borderRadius: 10,
     padding: 10,
-    gap: 20,
+    marginVertical: 10,
+    alignItems: "center",
+    marginHorizontal: 20,
+  },
+  // ... other existing styles ...
+
+  cropGrid: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 0,
+    flexWrap: "wrap",
+    paddingHorizontal: 3,
+  },
+
+  cropContainer: {
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+    backgroundColor: "white",
+    width: 120,
+    height: 110,
+    marginTop: 10,
   },
   cropImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 10,
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+    marginBottom: 5,
   },
   cropName: {
-    fontSize: 16,
+    fontSize: 12,
     fontWeight: "bold",
+    marginBottom: 10,
     color: theme.colors.text,
-    marginTop: 5,
+    marginTop: 0,
+    textAlign: "center",
   },
   cropTotal: {
     fontSize: 14,
     color: theme.colors.text,
+  },
+  cropButtonText: {
+    marginBottom: 10,
   },
 });
 
