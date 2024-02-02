@@ -48,17 +48,17 @@ const LoginScreen = ({ navigation }) => {
           }
         };
         saveData();
-
+console.log(user , 'userrr')
         let roleMessage = "";
 
         if (user.status.data.role === "farmer") {
-          navigation.navigate("FarmerDashboard");
+          // navigation.navigate("FarmerDashboard");
           roleMessage = "Farmer";
         } else if (user.status.data.role === "customer") {
-          navigation.navigate("CustomerDashboard");
+          // navigation.navigate("CustomerDashboard");
           roleMessage = "Customer";
         } else if (user.status.data.role === "admin") {
-          navigation.navigate("AdminDashboard");
+          // navigation.navigate("AdminDashboard");
           roleMessage = "Admin";
         }
 

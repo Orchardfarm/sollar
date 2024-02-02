@@ -9,7 +9,9 @@ import {
 } from "react-native";
 import * as base from "./../../env";
 import { theme } from "../../src/core/theme";
-
+import svgs from "../../src/assets/Svgs";
+import { SvgXml } from "react-native-svg";
+import catimg from "../../src/assets/cart.png";
 const url = base.BASE_URL;
 const cropImageMapping = {
   "Passion fruits": require("./../../assets/passion.jpeg"),
@@ -102,9 +104,24 @@ const Home = () => {
                       source={cropImageMapping[cropName]} // Set the image source based on the crop name
                     />
                     <View></View>
-                    <TouchableOpacity style={{backgroundColor : 'green' , borderRadius : 10 , padding : 2 , width : 90}}>
-                      <Text style={styles.cropTotal}>Add to Cart</Text>
+                    <TouchableOpacity
+                      style={{
+                        backgroundColor: "white",
+                        borderRadius: 10,
+                        padding: 2,
+                        width: 90,
+                        flexDirection: "row",
+                        alignItems: "center",
+                        justifyContent: "space-evenly",
+                        alignSelf: "center",
+                      }}
+                    >
+                      {/* <Text style={styles.cropTotal}>Add to Cart</Text> */}
                       <Text style={styles.cropTotal}>$100</Text>
+                      <Image
+                        source={catimg}
+                        style={{ width: 30, height: 30 }}
+                      />
                     </TouchableOpacity>
                   </View>
                 );
@@ -122,7 +139,7 @@ const Home = () => {
           >
             {cropNames.map((cropName, index) => {
               return (
-                <TouchableOpacity
+                <View
                   key={index}
                   onPress={() => setCropName(cropName)}
                   style={styles.cropButton}
@@ -132,11 +149,26 @@ const Home = () => {
                     source={cropImageMapping[cropName]}
                     style={styles.cropImage}
                   />
-                  <TouchableOpacity style={{backgroundColor : 'green' , borderRadius : 10 , padding : 2 , width : 90}}>
-                    <Text style={[styles.cropButtonText , {color : 'white'}]}>Add to cart</Text>
-                    <Text style={[styles.cropButtonText , {color : 'white'}]}>$ 400</Text>
-                  </TouchableOpacity>
-                </TouchableOpacity>
+                  <TouchableOpacity
+                      style={{
+                        backgroundColor: "white",
+                        borderRadius: 10,
+                        padding: 2,
+                        width: 90,
+                        flexDirection: "row",
+                        alignItems: "center",
+                        justifyContent: "space-evenly",
+                        alignSelf: "center",
+                      }}
+                    >
+                      {/* <Text style={styles.cropTotal}>Add to Cart</Text> */}
+                      <Text style={styles.cropTotal}>$100</Text>
+                      <Image
+                        source={catimg}
+                        style={{ width: 30, height: 30 }}
+                      />
+                    </TouchableOpacity>
+                </View>
               );
             })}
           </ScrollView>
@@ -157,8 +189,8 @@ const Home = () => {
                   paddingHorizontal: 15,
                   marginTop: 70,
                   borderRadius: 100,
-                  alignItems : 'center',
-                  justifyContent : 'center'
+                  alignItems: "center",
+                  justifyContent: "center",
                 },
               ]}
             >
@@ -210,7 +242,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
     color: theme.colors.primary,
-    textAlign : 'center'
+    textAlign: "center",
   },
   featured: {
     marginTop: 20,
@@ -264,7 +296,7 @@ const styles = StyleSheet.create({
     width: 120,
     height: 110,
     marginTop: 15,
-    marginBottom : 10,
+    marginBottom: 10,
   },
   cropImage: {
     width: 50,
@@ -281,12 +313,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   cropTotal: {
-    fontSize: 14,
-    color: 'white',
-    textAlign : 'center'
+    fontSize: 18,
+    color: "black",
+    textAlign: "center",
   },
   cropButtonText: {
-    textAlign : 'center',
+    textAlign: "center",
   },
 });
 

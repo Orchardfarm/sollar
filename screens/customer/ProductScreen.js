@@ -332,12 +332,18 @@ const ProductScreen = () => {
 
   return (
     <View style={styles.container}>
+      <View style={{height : 280 , backgroundColor : '#2d4c35' , borderBottomLeftRadius : 80 , borderBottomRightRadius : 80 ,}}>
+
+      </View>
+      <View style={{flex : 1 , marginTop : -230}}>
       <FlatList
         data={productList}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         style={styles.productList}
       />
+      </View>
+   
 
       <TouchableOpacity style={styles.addButton} onPress={toggleAddPopup}>
         <Icon name="plus" size={24} color="white" />
@@ -434,6 +440,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F2F2F2",
     padding: 20,
+    paddingTop : 0,
+    paddingHorizontal : 0
   },
   header: {
     fontSize: 20,
@@ -476,6 +484,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 10,
     elevation: 2,
+    marginHorizontal : 20
   },
   productType: {
     fontSize: 16,

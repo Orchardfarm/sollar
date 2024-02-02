@@ -380,12 +380,15 @@ const ProductScreen = () => {
                     value={cropId}
                     onChangeText={(text) => setCrop(text)}
                   />
-                  <Button mode="contained" onPress={addProduct}>
-                    <Text>Add</Text>
-                  </Button>
-                  <Button mode="contained" onPress={toggleAddPopup}>
-                    <Text>Cancel</Text>
-                  </Button>
+                  <View style={{flexDirection : 'row'}}>
+                  <TouchableOpacity onPress={addProduct} style={styles.button}>
+                    <Text style={{color : 'white'}}>Add</Text>
+                  </TouchableOpacity >
+                  <TouchableOpacity  onPress={toggleAddPopup} style={styles.button}>
+                    <Text style={{color : 'white'}}>Cancel</Text>
+                  </TouchableOpacity>
+                  </View>
+               
                 </View>
               </ScrollView>
             </View>
@@ -419,7 +422,7 @@ const ProductScreen = () => {
                 onChangeText={(text) => setQuantity(text)}
               />
               <Button mode="contained" onPress={confirmUpdateProduct}>
-                <Text>Update</Text>
+                <Text >Update</Text>
               </Button>
             </ScrollView>
           </View>
@@ -455,6 +458,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     maxHeight: "70%",
   },
+  button : {
+width : 100,
+height : 40,
+backgroundColor :   theme.colors.primary,
+borderRadius : 20,
+justifyContent : 'center',
+alignItems : 'center',
+marginHorizontal  : 10,
+gap : 5
+  },
   inputContainer: {
     width: "100%",
   },
@@ -465,7 +478,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f0f0f0",
     borderRadius: 5,
     paddingHorizontal: 12,
-    textAlign : 'center'
+    textAlign : 'left'
   },
   productItem: {
     flexDirection: "row",

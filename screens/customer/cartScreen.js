@@ -41,7 +41,7 @@ const showPiadItems  = () =>{
             (    <Text style={styles.detailText}>
               Total: ${totalAmount.toFixed(2)}
             </Text>) : (
-               <Text style={[styles.detailText , {color : 'red'}]}>
+               <Text style={[styles.detailText , {color : theme.colors.primary}]}>
                Total amount paid : ${totalAmount.toFixed(2)}
              </Text>
             )}
@@ -59,11 +59,11 @@ const showPiadItems  = () =>{
   return (
     <View style={styles.container}>
       <View style={{flexDirection : 'row' , justifyContent:'space-evenly' , marginBottom :12}}>
-      <TouchableOpacity onPress={showPendingItems} style={{backgroundColor : showPending ?  theme.colors.primary : 'gray' , paddingVertical : 10 ,borderRadius : 5 , width : 120 , }}>
-        <Text style={{textAlign : 'center'}}>pending</Text>
+      <TouchableOpacity onPress={showPendingItems} style={{backgroundColor : showPending ?  theme.colors.primary: 'white' , paddingVertical : 10 ,borderRadius : 5 , width : 120 , }}>
+        <Text style={{textAlign : 'center' , fontWeight : 'bold' , color :showPending ? 'white' : 'black'}}>pending</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={{backgroundColor : shoPaid ? theme.colors.primary : 'gray' , paddingVertical : 10 ,borderRadius : 5 , width : 120}} onPress={showPiadItems}>
-      <Text style={{textAlign : 'center'}}>paid</Text>
+      <TouchableOpacity style={{backgroundColor : shoPaid ? theme.colors.primary : 'white' , paddingVertical : 10 ,borderRadius : 5 , width : 120 , color : 'white'}} onPress={showPiadItems}>
+      <Text style={{textAlign : 'center' , fontWeight : 'bold' , color : shoPaid ? 'white' : 'black'}}>paid</Text>
       </TouchableOpacity>
       </View>
      
@@ -130,9 +130,10 @@ const styles = StyleSheet.create({
   },
   detailText: {
     fontSize: 16,
+    fontWeight : 'bold'
   },
   totalContainer: {
-    backgroundColor: theme.colors.surface,
+    backgroundColor: theme.colors.primary,
     borderRadius: 10,
     padding: 15,
     marginTop: 10,
@@ -142,12 +143,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     marginBottom: 10,
+    color : 'white'
   },
   checkoutButton: {
-    backgroundColor: theme.colors.primary,
+    backgroundColor: 'white',
   },
   checkoutButtonText: {
-    color: theme.colors.white,
+    color : 'black'
   },
   cartItemTitle: {
     fontSize: 20,

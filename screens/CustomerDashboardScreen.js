@@ -136,7 +136,7 @@ export default function CustomersDashboardScreen({ navigation }) {
                     fontSize: 22,
                     marginVertical: 6,
                     fontWeight: "bold",
-                    color: "#111",
+                    color: "white",
                   }}
                 >
                   {user && user.data ? user.data.first_name : "User Email"}
@@ -145,7 +145,7 @@ export default function CustomersDashboardScreen({ navigation }) {
                 <Text
                   style={{
                     fontSize: 16,
-                    color: "#111",
+                    color: "white",
                   }}
                 >
                   {user && user.data ? user.data.phone_number : "User Email"}
@@ -171,7 +171,7 @@ export default function CustomersDashboardScreen({ navigation }) {
             fontWeight: "bold",
           },
           drawerLabelStyle: {
-            color: "#111",
+            color: "white",
           },
         }}
       >
@@ -183,7 +183,7 @@ export default function CustomersDashboardScreen({ navigation }) {
             
             title: "Home",
             drawerIcon: () => (
-              <SimpleLineIcons name="home" size={20} color="#528508" />
+              <SimpleLineIcons name="home" size={20} color="#fff" />
             ),
             headerRight: () => (
               <TouchableOpacity
@@ -192,7 +192,7 @@ export default function CustomersDashboardScreen({ navigation }) {
                 }}
                 onPress={onLogout}
               >
-                <FontAwesome name="arrow-right" size={24} color="#fff" />
+                <FontAwesome name="arrow-right" size={24} color="#111111" />
               </TouchableOpacity>
             ),
           }}
@@ -205,7 +205,7 @@ export default function CustomersDashboardScreen({ navigation }) {
             color: "#ffffff",
             title: "Products",
             drawerIcon: () => (
-              <MaterialIcons name="shopping-basket" size={20} color="#528508" />
+              <MaterialIcons name="shopping-basket" size={20} color="#fff" />
             ),
             headerRight: () => (
               <TouchableOpacity
@@ -238,7 +238,7 @@ export default function CustomersDashboardScreen({ navigation }) {
             drawerLabel: "Rate this App",
             title: "Rate this App",
             drawerIcon: () => (
-              <FontAwesome name="star" size={20} color="#528508" />
+              <FontAwesome name="star" size={20} color="#fff" />
             ),
           }}
           component={RateApp}
@@ -249,7 +249,7 @@ export default function CustomersDashboardScreen({ navigation }) {
             drawerLabel: "cart",
             title: "cart",
             drawerIcon: () => (
-              <FontAwesome name="shopping-cart" size={20} color="#528508" />
+              <FontAwesome name="shopping-cart" size={20} color="#fff" />
             ),
           }}
           component={cartScreen}
@@ -264,7 +264,7 @@ export default function CustomersDashboardScreen({ navigation }) {
               <MaterialCommunityIcons
                 name="message-alert-outline"
                 size={20}
-                color="#528508"
+                color="#fff"
               />
             ),
           }}
@@ -276,7 +276,7 @@ export default function CustomersDashboardScreen({ navigation }) {
             drawerLabel: "Share App",
             title: "Share App",
             drawerIcon: () => (
-              <MaterialCommunityIcons name="share" size={20} color="#528508" />
+              <MaterialCommunityIcons name="share" size={20} color="#fff" />
             ),
           }}
           component={ShareAppScreen}

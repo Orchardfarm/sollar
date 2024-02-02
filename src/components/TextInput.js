@@ -7,7 +7,9 @@ export default function TextInput({ errorText, description, ...props }) {
   return (
     <View style={styles.container}>
       <Input
-      placeholderTextColor={theme.colors.secondary}
+      
+      textAlign='flex-start'
+      placeholderTextColor= 'gray'
         style={styles.input}
         selectionColor={theme.colors.primary}
         underlineColor="transparent"
@@ -30,7 +32,7 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: theme.colors.surface,
-    textAlign : 'center'
+    textAlign : 'flex-start'
   },
   description: {
     fontSize: 13,
