@@ -1,4 +1,4 @@
-import React, { useContext,  useState, useEffect   } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import {
   SimpleLineIcons,
@@ -8,33 +8,35 @@ import {
 } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
-import { DrawerItemList, createDrawerNavigator } from "@react-navigation/drawer";
+import {
+  DrawerItemList,
+  createDrawerNavigator,
+} from "@react-navigation/drawer";
 import User from "./../assets/person.png";
 import UserCrops from "./farmer/UserCrops";
 import Contact from "./Contact";
-
+import Home from "./farmer/Home";
 import RateApp from "./RateApp";
 import CropsScreen from "./farmer/CropsScreen";
+import ProductScreen from "./farmer/ProductScreen";
 import Button from "../src/components/Button";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import ShareAppScreen from "./ShareAppScreen";
-import * as base from '../env'
+import * as base from "../env";
 import IssuesScreen from "./farmer/IssuesScreen";
-import Home from "./farmSpe/Home";
-var url = base.BASE_URL
-
+var url = base.BASE_URL;
 
 const Drawer = createDrawerNavigator();
 
-export default function SupportDashboardScreen({ navigation }) {
+export default function FarmerDashboardScreen({ navigation }) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const authToken = await AsyncStorage.getItem('authToken');
+        const authToken = await AsyncStorage.getItem("authToken");
         if (authToken) {
-          const response = await fetch(url + '/current_user', {
+          const response = await fetch(url + "/current_user", {
             headers: {
               Authorization: `Bearer ${authToken}`,
             },
@@ -43,21 +45,19 @@ export default function SupportDashboardScreen({ navigation }) {
           if (response.ok) {
             const userData = await response.json();
             setUser(userData);
-            console.log('User:', user);
-
+            console.log("User:", user);
           } else {
             // Handle fetch user data error
           }
         }
       } catch (error) {
         // Handle any errors that occur during AsyncStorage or fetch operations
-        console.error('Error fetching user data:', error);
+        console.error("Error fetching user data:", error);
       }
     };
 
     fetchUserData();
   }, []);
-
 
   // if (!localStorage.getItem("authToken")) {
   //   return (
@@ -102,20 +102,17 @@ export default function SupportDashboardScreen({ navigation }) {
   const shareApp = async () => {
     try {
       const options = {
-        title: 'Share App',
-        message: 'Check out this awesome app!',
-        url: 'https://your-app-download-link.com',
+        title: "Share App",
+        message: "Check out this awesome app!",
+        url: "https://your-app-download-link.com",
       };
       await Share.open(options);
     } catch (error) {
-      console.error('Error sharing app:', error);
+      console.error("Error sharing app:", error);
     }
   };
 
-  const handleSearch = () => {
-    
-  };
-  
+  const handleSearch = () => {};
 
   return (
     <NavigationContainer independent={true}>
@@ -123,62 +120,62 @@ export default function SupportDashboardScreen({ navigation }) {
         drawerContent={(props) => {
           return (
             <SafeAreaView>
-            <View
-              style={{
-                height: 200,
-                width: "100%",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
+              <View
+                style={{
+                  height: 200,
+                  width: "100%",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
                 <View style={{ alignSelf: "center" }}>
                   {user && user.data ? (
-              <Image
-                source={User}
-                style={{
-                  height: 130,
-                  width: 130,
-                  borderRadius: 65,
-                }}
-              />
-            ) : (
-              <Image
-                source={User} // You can provide a default image source if the user doesn't have an avatar
-                style={{
-                  height: 130,
-                  width: 130,
-                  borderRadius: 65,
-                }}
-              />
-            )}
-</View>
+                    <Image
+                      source={User}
+                      style={{
+                        height: 130,
+                        width: 130,
+                        borderRadius: 65,
+                      }}
+                    />
+                  ) : (
+                    <Image
+                      source={User} // You can provide a default image source if the user doesn't have an avatar
+                      style={{
+                        height: 130,
+                        width: 130,
+                        borderRadius: 65,
+                      }}
+                    />
+                  )}
+                </View>
 
-            <Text
-              style={{
-                fontSize: 22,
-                marginVertical: 6,
-                fontWeight: "bold",
-                color: "#fff",
-              }}
-            >
-              {user && user.data ? user.data.first_name : "User Name"}
-            </Text>
-            
-              <Text
-                style={{
-                  fontSize: 16,
-                  marginVertical: 6,
+                <Text
+                  style={{
+                    fontSize: 22,
+                    marginVertical: 6,
+                    fontWeight: "bold",
+                    color: "#fff",
+                  }}
+                >
+                  {user && user.data ? user.data.first_name : "User Name"}
+                </Text>
+
+                <Text
+                  style={{
+                    fontSize: 16,
+                    marginVertical: 6,
                     color: "#fff",
                     marginHorizontal: 20,
                     marginBottom: 10,
-                }}
-              >
-                 {user && user.data ? user.data.phone_number : "Phone"}
-              </Text>
-            </View>
+                  }}
+                >
+                  {user && user.data ? user.data.phone_number : "Phone"}
+                </Text>
+              </View>
 
-            <DrawerItemList {...props} />
-          </SafeAreaView>
+              <DrawerItemList {...props} />
+            </SafeAreaView>
           );
         }}
         screenOptions={{
@@ -204,7 +201,7 @@ export default function SupportDashboardScreen({ navigation }) {
           name="Home"
           options={{
             drawerLabel: "Home",
-drawerActiveTintColor: "white",
+            drawerActiveTintColor: "white",
             drawerInactiveTintColor: "black",
             drawerContentContainerStyle: {
               borderWidth: 1,
@@ -224,7 +221,7 @@ drawerActiveTintColor: "white",
               <SimpleLineIcons name="home" size={18} color="#fff"  style = {{
                 color : "#fff" , marginRight : -8
               }}/>
-            ), 
+            ),
             headerRight: () => (
               <TouchableOpacity
                 style={{
@@ -238,8 +235,41 @@ drawerActiveTintColor: "white",
           }}
           component={Home}
         />
-      
-<Drawer.Screen
+        <Drawer.Screen
+          name="Crops"
+          options={{
+            drawerLabel: "Crops",
+            drawerLabelStyle: {
+              color: "#fff",
+              fontSize : 15,
+              fontWeight: "bold",
+              borderBottomColor: "#fff",
+              borderBottomWidth: 1,
+              paddingVertical:  5,
+              width: "70%",
+              fontSize : 15
+            },
+            color: "#77528508c58c",
+            title: "Crops",
+            drawerIcon: () => (
+              <MaterialIcons name="local-florist" size={18} color="#fff"  style = {{
+                color : "#fff" , marginRight : -8
+              }} />
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                style={{
+                  marginRight: 16,
+                }}
+                onPress={handleSearch}
+              >
+                <FontAwesome name="search" size={24} color="#fff" />
+              </TouchableOpacity>
+            ),
+          }}
+          component={CropsScreen}
+        />
+        <Drawer.Screen
           name="Issues"
           options={{
             drawerLabel: "Issues",
@@ -271,12 +301,44 @@ drawerActiveTintColor: "white",
           }}
           component={IssuesScreen}
         />
-
+        <Drawer.Screen
+          name="Products"
+          options={{
+            drawerLabel: "Products",
+            drawerLabelStyle: {
+              color: "#fff",
+              fontWeight: "bold",
+              borderBottomColor: "#fff",
+              borderBottomWidth: 1,
+              paddingVertical:  5,
+              width: "70%",
+              fontSize : 15
+            },
+            color: "#fff",
+            title: "Products",
+            drawerIcon: () => (
+              <MaterialIcons name="shopping-basket" size={18} color="#fff"  style = {{
+                color : "#fff" , marginRight : -8
+              }} />
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                style={{
+                  marginRight: 16,
+                }}
+                onPress={handleSearch}
+              >
+                <FontAwesome name="search" size={24} color="#fff" />
+              </TouchableOpacity>
+            ),
+          }}
+          component={ProductScreen}
+        />
         <Drawer.Screen
           name="Rate this App"
           options={{
             drawerLabel: "Rate this App",
-drawerLabelStyle: {
+            drawerLabelStyle: {
               color: "#fff",
               fontWeight: "bold",
               borderBottomColor: "#fff",
@@ -299,7 +361,7 @@ drawerLabelStyle: {
           name="Contact"
           options={{
             drawerLabel: "Contact",
-drawerLabelStyle: {
+            drawerLabelStyle: {
               color: "#fff",
               fontWeight: "bold",
               borderBottomColor: "#fff",
@@ -327,7 +389,7 @@ drawerLabelStyle: {
           name="Share App"
           options={{
             drawerLabel: "Share App",
-drawerLabelStyle: {
+            drawerLabelStyle: {
               color: "#fff",
               fontWeight: "bold",
               borderBottomColor: "#fff",
