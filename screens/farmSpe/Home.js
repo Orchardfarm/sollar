@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
+  Linking,
 } from "react-native";
 import * as base from "./../../env";
 import { theme } from "../../src/core/theme";
@@ -50,6 +51,11 @@ const Home = () => {
     }
   };
 
+  const openMap = (latitude, longitude) => {
+    const url = `https://www.google.com/maps/place/${latitude},${longitude}`;
+    Linking.openURL(url);
+  };
+
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <View style={styles.container}>
@@ -91,31 +97,47 @@ const Home = () => {
           >
             <Text style={[styles.header , {  backgroundColor : theme.colors.primary , paddingTop : 5 , paddingHorizontal : 10 , color : 'white'}]}>All issues</Text>
             <ScrollView
-              showsHorizontalScrollIndicator={false}
-              showsVerticalScrollIndicator={false}
-              vertical
-              style={{
-                height: 150,
-                marginTop: 20,
-              }}
-            >
-              {cropNames.map((cropName, index) => {
-                return (
-                  <TouchableOpacity
-                    key={index}
-                    onPress={() => setCropName(cropName)}
-                    style={styles.cropButton}
-                  >
-                    <Text style={styles.cropButtonText}>Farmer name :  test 12</Text>
-                    <Text style={styles.cropButtonText}>issue name :  no water</Text>
-                    <TouchableOpacity style={{backgroundColor : "white" , borderRadius : 20 , width : 100 , alignSelf : 'center' , height : 25 , alignItems  : 'center' , justifyContent : 'center' , marginBottom : 10}}>
-                <Text style={{color :theme.colors.primary , fontWeight : 'bold' , }}>View details</Text>
-              </TouchableOpacity>
-                    
-                  </TouchableOpacity>
-                );
-              })}
-            </ScrollView>
+  showsHorizontalScrollIndicator={false}
+  showsVerticalScrollIndicator={false}
+  vertical
+  style={{
+    height: 150,
+    marginTop: 20,
+  }}
+>
+  {cropNames.map((cropName, index) => {
+    const latitude ='0.7482185'
+    const longitude ='34.9897577'
+
+    return (
+      <TouchableOpacity
+        key={index}
+        onPress={() => setCropName(cropName)}
+        style={styles.cropButton}
+      >
+        <Text style={styles.cropButtonText}>Farmer name: test 12</Text>
+        <Text style={styles.cropButtonText}>issue name: no water</Text>
+        <TouchableOpacity
+          style={{
+            backgroundColor: "white",
+            borderRadius: 20,
+            width: 100,
+            alignSelf: "center",
+            height: 25,
+            alignItems: "center",
+            justifyContent: "center",
+            marginBottom: 10,
+          }}
+          onPress={() => openMap(latitude, longitude)}
+        >
+          <Text style={{ color: theme.colors.primary, fontWeight: "bold" }}>
+            View details
+          </Text>
+        </TouchableOpacity>
+      </TouchableOpacity>
+    );
+  })}
+</ScrollView>
           </View>
 
           <View
