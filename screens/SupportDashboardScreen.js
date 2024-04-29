@@ -79,7 +79,7 @@ export default function SupportDashboardScreen({ navigation }) {
       const authToken = await AsyncStorage.getItem("authToken");
 
       const response = await fetch(
-        "https://farm-b-y78k.onrender.com//users/sign_out",
+        "https://farm-b-y78k.onrender.com/users/sign_out",
         {
           method: "DELETE",
           headers: {
