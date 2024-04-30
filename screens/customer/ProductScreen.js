@@ -32,6 +32,7 @@ const ProductScreen = () => {
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [priceEdit, setPriceEdit] = useState("");
   const [quantityEdit, setQuantityEdit] = useState("");
+  const [cart, setCart] = useState([]); // State to store items in the cart
 
   const fetchProductList = async () => {
     try {
@@ -104,8 +105,6 @@ const ProductScreen = () => {
     if (!showDetailsPopup || !selectedProduct) {
       return null;
     }
-    console.log(productList);
-    console.log(productList);
     return (
       <Modal
         visible={showDetailsPopup}
@@ -292,43 +291,94 @@ const ProductScreen = () => {
   };
 
   const renderItem = ({ item }) => (
-    console.log(item, "item"),
-    (
-      <View>
-        <TouchableOpacity
-          style={styles.productItem}
-          onPress={() => handleProductClick(item)}
+    <View>
+      <TouchableOpacity
+        style={styles.productItem}
+        onPress={() => handleProductClick(item)}
+      >
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
         >
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <View>
-              <Image
-                style={styles.cropImage}
-                source={cropImageMapping[item.attributes.crop_name]}
-              />
-            </View>
-
-            <View style={{ marginLeft: 20 }}>
-              <Text style={styles.productType}>
-                {item.attributes.crop_name}
-              </Text>
-              <Text style={styles.productVariety}>
-                price {item.attributes.price}
-              </Text>
-              <Text style={styles.productVariety}>
-                quantity {item.attributes.quantity}
-              </Text>
-            </View>
+          <View>
+            <Image
+              style={styles.cropImage}
+              source={cropImageMapping[item.attributes.crop_name]}
+            />
           </View>
-        </TouchableOpacity>
-      </View>
-    )
+
+          <View style={{ marginLeft: 20 }}>
+            <Text style={styles.productType}>
+              {item.attributes.crop_name}
+            </Text>
+            <Text style={styles.productVariety}>
+              price {item.attributes.price}
+            </Text>
+            <Text style={styles.productVariety}>
+              quantity {item.attributes.quantity}
+            </Text>
+          </View>
+          <TouchableOpacity onPress={() => addToCart(item)}>
+            <Icon name="cart-plus" size={24} color="#528508" />
+          </TouchableOpacity>
+        </View>
+      </TouchableOpacity>
+    </View>
   );
+
+  const addToCart = (product) => {
+    setCart([...cart, product]); // Add the selected product to the cart
+    Alert.alert("Product added to cart");
+  };
+
+  const checkout = async () => {
+    try {
+      const totalPrice = cart.reduce((acc, curr) => acc + curr.attributes.price, 0);
+      const response = await fetch('https://connect.squareupsandbox.com/v2/payments', {
+        method: 'POST',
+        headers: {
+          'Square-Version': '2024-04-17',
+          'Authorization': 'Bearer EAAAlpxsmpxeuC7_qxFW4H3yjx8lMHc3ibmg2KlTWxYuU6cLWzDc6NMQNnmmNfef',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "amount_money": {
+            "amount": totalPrice * 100, // convert to cents
+            "currency": "USD"
+          },
+          "idempotency_key": "2e8bf0c5-b0a4-441b-9620-5becdcaa9778",
+          "source_id": "cnon:card-nonce-ok",
+          "autocomplete": true,
+          "buyer_email_address": "vigehi2017@gmail.com",
+          "cash_details": {
+            "buyer_supplied_money": {
+              "amount": totalPrice * 100, // convert to cents
+              "currency": "USD"
+            }
+          },
+          "customer_id": "HC8AMVGJA9G6Y9H2HNMMD0SNNM",
+          "location_id": "LXM1REAR0Q9FE"
+        })
+      });
+      
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log('Payment successful:', responseData);
+        // Clear the cart
+        setCart([]);
+        Alert.alert('Payment successful. Cart cleared.');
+      } else {
+        console.error('Payment failed:', response.status);
+        Alert.alert('Payment failed. Please try again later.');
+      }
+    } catch (error) {
+      console.error('Error processing payment:', error);
+      Alert.alert('Error processing payment. Please try again later.');
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -347,6 +397,12 @@ const ProductScreen = () => {
 
       <TouchableOpacity style={styles.addButton} onPress={toggleAddPopup}>
         <Icon name="plus" size={24} color="white" />
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.checkoutButton} onPress={checkout}>
+        <Icon name="shopping-cart" size={24} color="white" />
+        <Text style={styles.checkoutButtonText}>Checkout</Text>
+        <Text style={styles.totalPrice}>Total: ${cart.reduce((acc, curr) => acc + curr.attributes.price, 0)}</Text>
       </TouchableOpacity>
 
       {showAddPopup && (
@@ -412,21 +468,26 @@ const ProductScreen = () => {
               showsVerticalScrollIndicator={false}
             >
               <Text style={styles.header}>Edit Product</Text>
-              <TextInput
-                style={styles.smallInput}
-                placeholder="Product Price"
-                value={price}
-                onChangeText={(text) => setPrice(text)}
-              />
-              <TextInput
-                style={styles.smallInput}
-                placeholder="Product Quantity"
-                value={quantity}
-                onChangeText={(text) => setQuantity(text)}
-              />
-              <Button mode="contained" onPress={confirmUpdateProduct}>
-                <Text>Update</Text>
-              </Button>
+              <View style={styles.inputContainer}>
+                <TextInput
+                  style={styles.smallInput}
+                  placeholder="Enter new price"
+                  value={priceEdit}
+                  onChangeText={(text) => setPriceEdit(text)}
+                />
+                <TextInput
+                  style={styles.smallInput}
+                  placeholder="Enter new quantity"
+                  value={quantityEdit}
+                  onChangeText={(text) => setQuantityEdit(text)}
+                />
+                <Button mode="contained" onPress={confirmUpdateProduct}>
+                  <Text>Update</Text>
+                </Button>
+                <Button mode="contained" onPress={closeEditPopup}>
+                  <Text>Cancel</Text>
+                </Button>
+              </View>
             </ScrollView>
           </View>
         </View>
@@ -438,141 +499,109 @@ const ProductScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F2F2F2",
-    padding: 20,
-    paddingTop : 0,
-    paddingHorizontal : 0
-  },
-  header: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 10,
-    color: theme.colors.primary,
-  },
-  modalContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
-  popupContainer: {
-    width: "90%",
-    padding: 20,
-    backgroundColor: "white",
-    borderRadius: 10,
-    alignItems: "center",
-    maxHeight: "70%",
-  },
-  inputContainer: {
-    width: "100%",
-  },
-  smallInput: {
-    width: "100%",
-    flex: 1,
-    marginBottom: 10,
-    backgroundColor: "#f0f0f0",
-    borderRadius: 5,
-    paddingHorizontal: 12,
-    textAlign : 'center'
+    backgroundColor: "#FFF",
   },
   productItem: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    backgroundColor: "#ffffff",
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 10,
-    elevation: 2,
-    marginHorizontal : 20
+    padding: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: "#f0f0f0",
   },
   productType: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "bold",
-    marginBottom: 5,
-    color: theme.colors.text,
   },
   productVariety: {
-    fontSize: 14,
-    color: theme.colors.text,
-  },
-  productList: {
-    flex: 1,
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    gap: 20,
-    justifyContent: "space-between",
-  },
-  closeIcon: {
-    position: "absolute",
-    top: 10,
-    right: 10,
-    zIndex: 1,
-  },
-  modalContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
-  popupContainer: {
-    width: "90%",
-    padding: 20,
-    backgroundColor: "white",
-    borderRadius: 10,
-    alignItems: "center",
-    maxHeight: "70%",
-  },
-  closeIcon: {
-    position: "absolute",
-    top: 10,
-    right: 10,
-    zIndex: 1,
-  },
-  scrollContainer: {
-    paddingBottom: 20,
-  },
-  header: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 10,
-    color: theme.colors.primary,
-  },
-  detailItem: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 10,
-  },
-  detailLabel: {
     fontSize: 16,
-    fontWeight: "bold",
-    width: "40%",
-  },
-  detailValue: {
-    fontSize: 16,
-    width: "60%",
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    gap: 50,
+    color: "#666",
   },
   addButton: {
     position: "absolute",
-    bottom: 20,
     right: 20,
-    backgroundColor: theme.colors.primary, // Use your desired button background color
-    borderRadius: 50, // Make it a circle
-    width: 50,
-    height: 50,
+    bottom: 20,
+    backgroundColor: theme.colors.primary,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
     justifyContent: "center",
     alignItems: "center",
-    elevation: 5, // Add elevation for a shadow effect
+    elevation: 3,
+  },
+  checkoutButton: {
+    position: "absolute",
+    right: 20,
+    bottom: 100,
+    backgroundColor: theme.colors.primary,
+    width: 160,
+    height: 40,
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    elevation: 3,
+  },
+  checkoutButtonText: {
+    color: "white",
+    marginLeft: 5,
+  },
+  totalPrice: {
+    color: "white",
+    position: "absolute",
+    right: 10,
+    bottom: -10,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
+  popupContainer: {
+    backgroundColor: "white",
+    width: "80%",
+    borderRadius: 10,
+    padding: 20,
+    elevation: 5,
+  },
+  closeIcon: {
+    alignSelf: "flex-end",
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: "center",
+  },
+  header: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 20,
+    textAlign: "center",
+  },
+  detailItem: {
+    marginBottom: 10,
+  },
+  detailLabel: {
+    fontWeight: "bold",
+  },
+  detailValue: {
+    marginLeft: 10,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginTop: 20,
+  },
+  inputContainer: {
+    marginTop: 20,
+  },
+  smallInput: {
+    marginBottom: 10,
+  },
+  productList: {
+    flex: 1,
+    marginHorizontal: 10,
   },
   cropImage: {
-    width: 100,
-    height: 100,
+    width: 80,
+    height: 80,
     borderRadius: 10,
   },
 });
