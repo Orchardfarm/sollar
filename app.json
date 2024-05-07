@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "orchard",
-    "slug": "orchard",
+    "name": "solajiji",
+    "slug": "solajiji",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,14 +22,14 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.vigege.orchard2"
+      "package": "com.smash11.solajiji"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "4ba1d60c-5f72-4c78-a7e2-0d19d227fb78"
+        "projectId": "f16ed198-7c43-406f-9565-1f986c246dca"
       }
     }
   }

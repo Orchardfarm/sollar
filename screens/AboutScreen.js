@@ -1,78 +1,162 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Animated, ImageBackground } from 'react-native';
 import { theme } from './../src/core/theme';
-import AppLogo from './../assets/icon.png';
 import Background from '../src/components/Background';
+import { Ionicons } from '@expo/vector-icons'; // Import Ionicons from Expo for icons
+import { MaterialIcons } from '@expo/vector-icons'; // Import MaterialIcons from Expo for icons
 
 const AboutScreen = ({ navigation }) => {
-  return (
-    <Background>
-    <View style={styles.container}>
-      <View style={styles.logoContainer}>
-        <Image source={AppLogo} style={styles.logo} />
-        <Text style={styles.appName}>The Orchard</Text>
-      </View>
-      <View style={styles.descriptionContainer}>
-        <Text style={styles.description}>
-          Welcome to The Orchard, where we connect you to the heart of agriculture. Our mission is to empower consumers and businesses with real-time, up-to-date information on what farmers are offering in the market. We believe in transparency, efficiency, and sustainability in the agricultural supply chain.
-        </Text>
-        <Text style={styles.description}>
-          With The Orchard, you can make informed decisions, support local farmers, and contribute to a greener future. Join us on this journey of growth, taste the freshness, and nurture a sustainable world.
-        </Text>
-      </View>
-      <Text style={styles.version}>Version 1.0.0</Text>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          navigation.navigate('Location');
-        }}
-      >
-        <Text style={styles.buttonText}>Get Started</Text>
-      </TouchableOpacity>
+  const [scaleValue] = useState(new Animated.Value(1));
+
+  // Get the current time
+  const currentTime = new Date().getHours();
+  let greeting;
+
+  // Set the greeting based on the current time
+  if (currentTime < 12) {
+    greeting = 'Good Morning';
+  } else if (currentTime < 18) {
+    greeting = 'Good Afternoon';
+  } else {
+    greeting = 'Good Evening';
+  }
+
+  return (
+    <View style={styles.background}>
+      
+
+            
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => {/* Handle notification icon press */}}>
+          <Ionicons name="notifications-outline" size={35} color="#0a6622" />
+        </TouchableOpacity>
+        <Image source={require('./../assets/logo.png')} style={styles.logo} />
+        <TouchableOpacity onPress={() => {/* Handle settings icon press */}}>
+          <MaterialIcons name="settings" size={35} color="#0a6622" />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.container}>
+        <Text style={styles.greeting}>{greeting}</Text>
+        <View style={styles.logoContainer}>
+          <Text style={styles.appName}>The Ultimate Weather Predictor</Text>
+        </View>
+        <View style={styles.cardContainer}>
+          {/* Render five cards */}
+          
+          <TouchableOpacity style={styles.card}>
+            <Ionicons name="sunny" size={24} color="#fd6a02" />
+            <Text style={styles.cardText}>Solar Forecasting</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.card}>
+            <Ionicons name="flash" size={24} color="#fd6a02" />
+            <Text style={styles.cardText}>Wind Forecasting</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.card} onPress={() => {
+            navigation.navigate('Weather');
+          }}>
+            <MaterialIcons name="warning" size={24} color="#fd6a02" />
+            <Text style={styles.cardText} >Hazard Watch</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.card}>
+            <MaterialIcons name="help" size={24} color="#fd6a02" />
+            <Text style={styles.cardText}>Help</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.card}>
+            <MaterialIcons name="notifications" size={24} color="#fd6a02" />
+            <Text style={styles.cardText}>Alerts</Text>
+          </TouchableOpacity>
+        </View>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            navigation.navigate('Location');
+          }}
+        >
+          
+          <Text style={styles.buttonText}>Get instant Alerts</Text>
+        </TouchableOpacity>
+      </View>
     </View>
-  </Background>
   );
 };
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    backgroundColor: '#FFFFFF', // Set background color here
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    paddingTop: 40,
+    paddingBottom: 20,
+    alignItems: 'center',
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+},
+  logo: {
+    width: 120,
+    height: 24,
+    marginLeft: 60,
+    marginRight: 60,
+  },
   container: {
     flex: 1,
-    backgroundColor: theme.colors.background,
+    backgroundColor: '#ffffff',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: 0,
   },
   logoContainer: {
     alignItems: 'center',
-    marginBottom: 20,
-  },
-  logo: {
-    width: 120,
-    height: 120,
-    resizeMode: 'contain',
+    marginTop: -50,
+    marginBottom: 30,
   },
   appName: {
-    fontSize: 28,
+    fontSize: 18,
     fontWeight: 'bold',
-    marginTop: 10,
+    marginTop: 50,
+    marginBottom: 20,
     color: theme.colors.primary,
   },
-  descriptionContainer: {
-    marginTop: 10,
+  greeting: {
+    fontSize: 28,
+    marginBottom: 10,
+    color: theme.colors.text,
+    fontFamily: 'Roboto', // Add font family
+    textAlign: 'center',
+  },
+  cardContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    width: '100%',
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingHorizontal: 0,
     marginBottom: 20,
   },
-  description: {
-    textAlign: 'center',
-    fontSize: 16,
-    color: theme.colors.text,
-    marginBottom: 10,
-    lineHeight: 22,
+  card: {
+    backgroundColor: 'white',
+    width: '48%', 
+    height: 100, 
+    padding: 20,
+    borderRadius: 10,
+    elevation: 10,
+    marginBottom: 20,
+    flexDirection: 'column', // Align icon and text horizontally
+    alignItems: 'center', // Align icon and text vertically
   },
-  version: {
-    fontSize: 14,
-    color: theme.colors.secondary,
-    marginBottom: 10,
+  cardText: {
+    fontSize: 15,
+    marginLeft: 0, 
+    alignItems: 'center',
+    fontFamily: 'Roboto', // Add spacing between icon and text
   },
   button: {
     backgroundColor: theme.colors.primary,

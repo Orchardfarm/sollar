@@ -2,15 +2,9 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LocationScreen from './screens/LocationScreen'; 
-import RegistrationScreen from './screens/RegisterScreen';
-import UserTypeSelectionScreen from './screens/UserTypeSelectionScreen';
-import LoginScreen from './screens/LoginScreen';
-import CustomersDashboardScreen from './screens/CustomerDashboardScreen';
-import FarmerDashboardScreen from './screens/FarmerDashboardScreen';
-import ResetPasswordScreen from './screens/ResetPasswordScreen';
-import AdminDashboardScreen from './screens/AdminDashboaerdScreen';
+import HomeScreen from './screens/HomeScreen';
 import AboutScreen from './screens/AboutScreen';
-import SupportDashboardScreen from './screens/SupportDashboardScreen';
+import WeatherScreen from './screens/WeatherScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,47 +22,16 @@ const App = () => {
           component={LocationScreen}
           options={{ title: 'Location', headerShown: false }}
         />
-      <Stack.Screen
-          name="Register"
-          component={RegistrationScreen}
-          options={{ title: 'Register', headerShown: false }}
-        />
         <Stack.Screen
-          name="UserType"
-          component={UserTypeSelectionScreen}
-          options={{ title: 'User Type Selection', headerShown: false }}
-        />
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={{ title: 'Login', headerShown: false }}
-        />
-        <Stack.Screen
-          name="CustomerDashboard"
-          component={CustomersDashboardScreen}
-          options={{ title: 'Dashboard', headerShown: false }}
-        />
-        <Stack.Screen
-          name="FarmerDashboard"
-          component={FarmerDashboardScreen}
-          options={{ title: 'Dashboard', headerShown: false }}
-        />
-        <Stack.Screen
-          name="ResetPassword"
-          component={ResetPasswordScreen}
-          options={{ title: 'Password', headerShown: false }}
+          name="Home"
+          component={HomeScreen}
+          options={{ title: 'Home', headerShown: false }}
         />
          <Stack.Screen
-          name="AdminDashboard"
-          component={AdminDashboardScreen}
-          options={{ title: 'Dashboard', headerShown: false }}
+          name="Weather"
+          component={WeatherScreen}
+          options={{ title: 'Weather', headerShown: false }}
         />
-          <Stack.Screen
-          name="Special"
-          component={SupportDashboardScreen}
-          options={{ title: 'Dashboard', headerShown: false }}
-        />
-     
       </Stack.Navigator>
     </NavigationContainer>
   );

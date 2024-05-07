@@ -45,21 +45,24 @@ const LocationScreen = ({navigation}) => {
     checkLocation();
   }
 
-  const gotoUserType = async () => {
-    try {
-      if (location == null) {
-        alert("Please turn on location");
-      } else {
-        console.log("locs" +location);
-        navigation.navigate('UserType', { location: location }); // Navigate to UserType screen with location data
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }
+  // const gotoUserType = async () => {
+  //   try {
+  //     if (location == null) {
+  //       alert("Please turn on location");
+  //     } else {
+  //       console.log("locs" +location);
+  //       navigation.navigate('UserType', { location: location }); // Navigate to UserType screen with location data
+  //     }
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // }
 
-  const gotoLogin = async () => {
-    navigation.navigate('Login'); // Navigate to Login screen
+  // const gotoLogin = async () => {
+  //   navigation.navigate('Login'); // Navigate to Login screen
+  // }
+  const gotoHome = async () => {
+    navigation.navigate('Home');
   }
 
   useEffect(() => {
@@ -77,7 +80,7 @@ const LocationScreen = ({navigation}) => {
             height: "90%",
             resizeMode: 'contain'
           }}
-          source={require("../assets/location.png")}
+          source={require("../assets/favicon.png")}
         />
       </TouchableOpacity>
       <Text style={styles.heading}>Turn on Location</Text>
@@ -85,14 +88,16 @@ const LocationScreen = ({navigation}) => {
       <View style={{ flex: 1, height: 1, backgroundColor: 'black' }} />
       <TouchableOpacity
         style={styles.button}
-        onPress={gotoLogin}
+        onPress={gotoHome}
+        // onPress={gotoLogin}
         // onPress={handleLogin}
       >
-        <Text style={styles.buttonText}>Log In</Text>
+        <Text style={styles.buttonText}>Understand About Solarjiji</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={gotoUserType}
+        
+        // onPress={gotoUserType}
         // onPress={handleLogin}
       >
         <Text style={styles.buttonText}>Sign Up</Text>
@@ -143,7 +148,7 @@ const styles = StyleSheet.create({
 
   },
   circle: {
-    backgroundColor: "#dedede",
+    backgroundColor: "#ffffff",
     height: 250,
     width: 250,
     borderRadius: 125,
